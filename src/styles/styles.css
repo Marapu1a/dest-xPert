@@ -1,0 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* -----------------------------------------------------CAROUSEL-------------------------------------------------- */
+
+/* Убираем стандартные стрелки */
+.swiper-button-prev::after,
+.swiper-button-next::after {
+  display: none;
+}
+
+/* Кастомные кнопки навигации */
+.swiper-button-prev,
+.swiper-button-next {
+  background-color: rgba(255, 255, 255, 0.500);
+  color: black;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.1s ease;
+}
+
+/* Эффект при наведении мыши */
+.swiper-button-prev:hover,
+.swiper-button-next:hover {
+  background-color: #2564eb70;
+  color: rgba(255, 255, 255, 0.500);
+}
+
+/* Сбрасываем состояние фокуса */
+.swiper-button-prev:focus,
+.swiper-button-next:focus {
+  outline: none;
+}
+
+/* Эффект нажатия */
+.swiper-button-prev:active,
+.swiper-button-next:active {
+  transform: scale(0.9);
+}
+
+/* Хак для мобильных устройств */
+@media (hover: none) {
+
+  .swiper-button-prev:hover,
+  .swiper-button-next:hover {
+    background-color: rgba(255, 255, 255, 0.500);
+    color: black;
+  }
+}
+
+
+/* -----------------------------------------------------HEADER-------------------------------------------------- */
+/* Отступ для контента, чтобы он не уходил под шапку */
+body {
+  padding-top: 60px;
+}

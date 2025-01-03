@@ -1,3 +1,11 @@
+import Carousel from '@pages/home/header/Carousel.jsx';
+import Header from '@pages/home/header/Header.jsx';
+
 export function App() {
-  return <h1>Hello</h1>;
+  return (
+    <div>
+      <Header />
+      <Carousel />
+    </div>
+  );
 }
