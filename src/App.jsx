@@ -1,11 +1,16 @@
-import Carousel from '@pages/home/header/Carousel.jsx';
-import Header from '@pages/home/header/Header.jsx';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Carousel from '@pages/home/header/Carousel';
+import Header from '@pages/home/header/Header';
 
 export function App() {
   return (
-    <div>
-      <Header />
-      <Carousel />
-    </div>
+    <BrowserRouter>
+      <div>
+        <Header />
+        <Routes>
+          <Route path="/" element={<Carousel />} />
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
 }
