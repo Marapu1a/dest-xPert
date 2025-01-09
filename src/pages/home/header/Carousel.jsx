@@ -82,34 +82,36 @@ const slides = [
 ];
 
 const Carousel = () => (
-  <Swiper
-    modules={[Navigation, Pagination, Autoplay]}
-    navigation
-    pagination={{ clickable: true }}
-    autoplay={{ delay: 3000, disableOnInteraction: false }}
-    loop
-  >
-    {slides.map((slide, index) => (
-      <SwiperSlide key={index}>
-        <img
-          src={slide.image}
-          alt={slide.title}
-          className="w-full h-[300px] sm:h-[400px] md:h-[500px] object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent flex flex-col justify-center items-center text-white">
-          <h2 className="text-2xl md:text-4xl font-bold text-shadow-lg">
-            {slide.title}
-          </h2>
-          <p className="text-lg md:text-xl mt-2 text-shadow-md">
-            {slide.subtitle}
-          </p>
-          <button className="mt-4 bg-blue-600 px-4 py-2 rounded-lg">
-            {slide.buttonText}
-          </button>
-        </div>
-      </SwiperSlide>
-    ))}
-  </Swiper>
+  <div className="w-full overflow-hidden">
+    <Swiper
+      modules={[Navigation, Pagination, Autoplay]}
+      navigation
+      pagination={{ clickable: true }}
+      autoplay={{ delay: 3000, disableOnInteraction: false }}
+      loop
+    >
+      {slides.map((slide, index) => (
+        <SwiperSlide key={index} className="relative">
+          <img
+            src={slide.image}
+            alt={slide.title}
+            className="w-full h-[300px] sm:h-[400px] md:h-[500px] object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent flex flex-col justify-center items-center text-white">
+            <h2 className="text-2xl md:text-4xl font-bold text-shadow-lg">
+              {slide.title}
+            </h2>
+            <p className="text-lg md:text-xl mt-2 text-shadow-md">
+              {slide.subtitle}
+            </p>
+            <button className="mt-4 bg-blue-600 px-4 py-2 rounded-lg hover:scale-105 transition-transform">
+              {slide.buttonText}
+            </button>
+          </div>
+        </SwiperSlide>
+      ))}
+    </Swiper>
+  </div>
 );
 
 export default Carousel;

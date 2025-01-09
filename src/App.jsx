@@ -1,16 +1,20 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Carousel from '@pages/home/header/Carousel';
-import Header from '@pages/home/header/Header';
+import Header from '@components/Header';
+import Footer from '@/components/Footer';
+import Home from '@pages/home/Home';
+import NewsPage from '@pages/news/NewsPage';
+import ScrollRestoration from '@/utils/ScrollRestoration';
 
 export function App() {
   return (
     <BrowserRouter>
-      <div>
-        <Header />
-        <Routes>
-          <Route path="/" element={<Carousel />} />
-        </Routes>
-      </div>
+      <ScrollRestoration />
+      <Header />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/news" element={<NewsPage />} />
+      </Routes>
+      <Footer />
     </BrowserRouter>
   );
 }

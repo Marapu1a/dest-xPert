@@ -4,18 +4,20 @@ import logo from '@assets/header/logo.gif';
 
 const HeaderWithMenu = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 768);
+  const [isDesktop, setIsDesktop] = useState(
+    window.matchMedia('(min-width: 768px)').matches
+  );
   const headerRef = useRef(null);
   const menuRef = useRef(null);
 
-  // Обработчик изменения ширины окна
+  // Используем matchMedia API для отслеживания изменения ширины окна
   useEffect(() => {
-    const handleResize = () => {
-      setIsDesktop(window.innerWidth >= 768);
-    };
-    window.addEventListener('resize', handleResize);
+    const mediaQuery = window.matchMedia('(min-width: 768px)');
+    const handleMediaChange = (e) => setIsDesktop(e.matches);
+
+    mediaQuery.addEventListener('change', handleMediaChange);
     return () => {
-      window.removeEventListener('resize', handleResize);
+      mediaQuery.removeEventListener('change', handleMediaChange);
     };
   }, []);
 
@@ -31,6 +33,7 @@ const HeaderWithMenu = () => {
     setMenuOpen((prev) => !prev);
   };
 
+  // Закрытие меню при клике вне области
   useEffect(() => {
     if (menuOpen) {
       const handleOutsideClick = (e) => {
@@ -48,9 +51,20 @@ const HeaderWithMenu = () => {
 
   // Стили для меню
   const menuStyles = `
-    ${isDesktop ? 'absolute top-[55px] left-0 w-full h-auto bg-white shadow-md' : 'fixed top-0 left-0 w-3/4 h-full bg-white shadow-md'}
-    transition-all duration-500 ease-in-out
-    ${menuOpen ? (isDesktop ? 'opacity-100 visible' : 'translate-x-0') : isDesktop ? 'opacity-0 invisible' : '-translate-x-full'}
+    ${
+      isDesktop
+        ? 'absolute top-[55px] left-0 w-full h-auto bg-white shadow-md'
+        : 'fixed top-0 left-0 w-3/4 h-full bg-white shadow-md'
+    }
+    transition-transform duration-500 ease-in-out transform ${
+      menuOpen
+        ? isDesktop
+          ? 'scale-y-100 opacity-100'
+          : 'translate-x-0'
+        : isDesktop
+          ? 'scale-y-0 opacity-0'
+          : '-translate-x-full'
+    }
   `;
 
   return (
@@ -61,7 +75,7 @@ const HeaderWithMenu = () => {
     >
       <div className="container mx-auto px-4 py-3 flex justify-between items-center">
         <Link to="/">
-          <img src={logo} alt="Logo" className="h-8" />
+          <img src={logo} alt="Logo" className="h-8" loading="lazy" />
         </Link>
         <div className="hidden md:flex space-x-4">
           <span className="text-gray-700">+7 700 377-15-15</span>
