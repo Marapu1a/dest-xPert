@@ -1,212 +1,213 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import {
+  FaPlaneDeparture,
+  FaMapMarkerAlt,
+  FaCalendarAlt,
+  FaUser,
+} from 'react-icons/fa';
+import { motion } from 'framer-motion';
+import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css';
 
 const cities = [
+  'Ташкент',
+  'Самарканд',
+  'Бухара',
+  'Фергана',
+  'Наманган',
   'Москва',
   'Санкт-Петербург',
-  'Казань',
-  'Новосибирск',
-  'Екатеринбург',
 ];
 
-function FlightSearch() {
-  const [mode, setMode] = useState('flight');
+function TourSearch() {
   const [fromCity, setFromCity] = useState('');
   const [toCity, setToCity] = useState('');
-  const [departureDate, setDepartureDate] = useState('');
-  const [returnDate, setReturnDate] = useState('');
-  const [passengers, setPassengers] = useState(1);
+  const [dates, setDates] = useState({ start: new Date(), end: new Date() });
+  const [showCalendar, setShowCalendar] = useState(false);
+  const [passengers, setPassengers] = useState({ adults: 1, children: 0 });
+  const [showPassengersMenu, setShowPassengersMenu] = useState(false);
+  const calendarRef = useRef(null);
 
-  const handleCityChange = (setter) => (event) => {
-    setter(event.target.value);
+  const handleDatesChange = (range) => {
+    const [start, end] = range;
+    setDates({ start, end: end || start });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!fromCity || !toCity || !departureDate) {
-      alert('Заполните все обязательные поля!');
-      return;
-    }
-    alert(
-      `Поиск билетов из ${fromCity} в ${toCity}, дата отправления: ${departureDate}, пассажиров: ${passengers}`
-    );
-  };
-
-  const renderForm = () => {
-    switch (mode) {
-      case 'tour':
-        return (
-          <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 bg-gray-100 p-4 rounded-lg shadow-lg">
-            <div className="flex-1">
-              <label className="block text-gray-700 text-sm font-bold mb-2">
-                Направление тура
-              </label>
-              <input
-                list="city-list"
-                value={fromCity}
-                onChange={handleCityChange(setFromCity)}
-                placeholder="Выберите город"
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              />
-              <datalist id="city-list">
-                {cities.map((city) => (
-                  <option key={city} value={city} />
-                ))}
-              </datalist>
-            </div>
-            <div className="flex-1">
-              <label className="block text-gray-700 text-sm font-bold mb-2">
-                Дата начала тура
-              </label>
-              <input
-                type="date"
-                value={departureDate}
-                onChange={(e) => setDepartureDate(e.target.value)}
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              />
-            </div>
-            <button
-              type="submit"
-              className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mt-4 md:mt-0"
-            >
-              Подобрать тур
-            </button>
-          </div>
-        );
-      case 'excursion':
-        return (
-          <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 bg-gray-100 p-4 rounded-lg shadow-lg">
-            <div className="flex-1">
-              <label className="block text-gray-700 text-sm font-bold mb-2">
-                Город экскурсии
-              </label>
-              <input
-                list="city-list"
-                value={toCity}
-                onChange={handleCityChange(setToCity)}
-                placeholder="Выберите город"
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              />
-              <datalist id="city-list">
-                {cities.map((city) => (
-                  <option key={city} value={city} />
-                ))}
-              </datalist>
-            </div>
-            <div className="flex-1">
-              <label className="block text-gray-700 text-sm font-bold mb-2">
-                Дата экскурсии
-              </label>
-              <input
-                type="date"
-                value={departureDate}
-                onChange={(e) => setDepartureDate(e.target.value)}
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              />
-            </div>
-            <button
-              type="submit"
-              className="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mt-4 md:mt-0"
-            >
-              Подобрать экскурсию
-            </button>
-          </div>
-        );
-      case 'flight':
-      default:
-        return (
-          <div className="flex flex-col space-y-4 bg-gray-100 p-4 rounded-lg shadow-lg md:space-y-0">
-            <div className="grid grid-cols-1 md:grid-cols-2 md:gap-4">
-              <div className="flex-1">
-                <label className="block text-gray-700 text-sm font-bold mb-2">
-                  Откуда
-                </label>
-                <input
-                  list="city-list"
-                  value={fromCity}
-                  onChange={handleCityChange(setFromCity)}
-                  placeholder="Выберите город"
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                />
-                <datalist id="city-list">
-                  {cities.map((city) => (
-                    <option key={city} value={city} />
-                  ))}
-                </datalist>
-              </div>
-              <div className="flex-1">
-                <label className="block text-gray-700 text-sm font-bold mb-2">
-                  Куда
-                </label>
-                <input
-                  list="city-list"
-                  value={toCity}
-                  onChange={handleCityChange(setToCity)}
-                  placeholder="Выберите город"
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                />
-              </div>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 md:gap-4">
-              <div className="flex-1">
-                <label className="block text-gray-700 text-sm font-bold mb-2">
-                  Когда
-                </label>
-                <input
-                  type="date"
-                  value={departureDate}
-                  onChange={(e) => setDepartureDate(e.target.value)}
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                />
-              </div>
-              <div className="flex-1">
-                <label className="block text-gray-700 text-sm font-bold mb-2">
-                  Пассажиры
-                </label>
-                <input
-                  type="number"
-                  min="1"
-                  value={passengers}
-                  onChange={(e) => setPassengers(e.target.value)}
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                />
-              </div>
-            </div>
-            <button
-              type="submit"
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mt-4 md:mt-0"
-            >
-              Найти билеты
-            </button>
-          </div>
-        );
+  const handleOutsideClick = (e) => {
+    if (calendarRef.current && !calendarRef.current.contains(e.target)) {
+      setShowCalendar(false);
     }
   };
+
+  useEffect(() => {
+    if (showCalendar) {
+      document.addEventListener('mousedown', handleOutsideClick);
+    } else {
+      document.removeEventListener('mousedown', handleOutsideClick);
+    }
+    return () => {
+      document.removeEventListener('mousedown', handleOutsideClick);
+    };
+  }, [showCalendar]);
 
   return (
-    <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-      <div className="flex justify-between mb-4">
-        <button
-          className={`py-2 px-4 rounded ${mode === 'flight' ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
-          onClick={() => setMode('flight')}
+    <div className="bg-white shadow-2xl rounded-lg p-8 flex items-center justify-between space-x-6 relative -mt-8 mb-8 z-10">
+      {/* From City */}
+      <div className="relative w-1/5">
+        <label className="text-gray-500 text-sm absolute -top-3 left-3 bg-white px-1">
+          Откуда
+        </label>
+        <FaPlaneDeparture
+          className="absolute left-3 top-4 text-blue-600"
+          size={20}
+        />
+        <select
+          value={fromCity}
+          onChange={(e) => setFromCity(e.target.value)}
+          className="border rounded-lg py-2 pl-10 pr-3 w-full focus:outline-none focus:shadow-md"
         >
-          Поиск авиабилетов
-        </button>
-        <button
-          className={`py-2 px-4 rounded ${mode === 'tour' ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
-          onClick={() => setMode('tour')}
-        >
-          Подбор тура
-        </button>
-        <button
-          className={`py-2 px-4 rounded ${mode === 'excursion' ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
-          onClick={() => setMode('excursion')}
-        >
-          Подбор экскурсии
-        </button>
+          <option value="" disabled hidden>
+            Выберите город
+          </option>
+          {cities.map((city) => (
+            <option key={city} value={city}>
+              {city}
+            </option>
+          ))}
+        </select>
       </div>
-      <form onSubmit={handleSubmit}>{renderForm()}</form>
+
+      {/* To City */}
+      <div className="relative w-1/5">
+        <label className="text-gray-500 text-sm absolute -top-3 left-3 bg-white px-1">
+          Куда
+        </label>
+        <FaMapMarkerAlt
+          className="absolute left-3 top-4 text-blue-600"
+          size={20}
+        />
+        <select
+          value={toCity}
+          onChange={(e) => setToCity(e.target.value)}
+          className="border rounded-lg py-2 pl-10 pr-3 w-full focus:outline-none focus:shadow-md"
+        >
+          <option value="" disabled hidden>
+            Выберите город
+          </option>
+          {cities.map((city) => (
+            <option key={city} value={city}>
+              {city}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      {/* Dates */}
+      <div className="relative w-1/5">
+        <label className="text-gray-500 text-sm absolute -top-3 left-3 bg-white px-1">
+          Даты тура
+        </label>
+        <FaCalendarAlt
+          className="absolute left-3 top-4 text-blue-600"
+          size={20}
+        />
+        <button
+          type="button"
+          onClick={() => setShowCalendar(true)}
+          className="border rounded-lg py-2 pl-10 pr-3 w-full focus:outline-none focus:shadow-md"
+        >
+          {`${dates.start.toLocaleDateString('ru-RU', { day: '2-digit', month: 'short' })} - ${dates.end.toLocaleDateString('ru-RU', { day: '2-digit', month: 'short' })}`}
+        </button>
+        {showCalendar && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            className="absolute top-full mt-2 bg-white shadow-md rounded-lg p-4"
+            ref={calendarRef}
+          >
+            <Calendar
+              selectRange
+              onChange={handleDatesChange}
+              value={[dates.start, dates.end]}
+              className="rounded-lg shadow-lg"
+            />
+            <button
+              type="button"
+              onClick={() => setShowCalendar(false)}
+              className="mt-1 bg-blue-600 text-white py-2 px-4 rounded-lg shadow-md hover:bg-blue-700"
+            >
+              Готово
+            </button>
+          </motion.div>
+        )}
+      </div>
+
+      {/* Passengers */}
+      <div className="relative w-1/5">
+        <label className="text-gray-500 text-sm absolute -top-3 left-3 bg-white px-1">
+          Туристы
+        </label>
+        <FaUser className="absolute left-3 top-4 text-blue-600" size={20} />
+        <button
+          type="button"
+          onClick={() => setShowPassengersMenu(!showPassengersMenu)}
+          className="border rounded-lg py-2 pl-10 pr-3 w-full focus:outline-none focus:shadow-md"
+        >
+          {`${passengers.adults} взрослых, ${passengers.children} детей`}
+        </button>
+        {showPassengersMenu && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            className="absolute top-full mt-2 bg-white shadow-md rounded-lg p-4"
+          >
+            <div className="flex justify-between items-center mb-2">
+              <span>Взрослые</span>
+              <input
+                type="number"
+                min="1"
+                max="10"
+                value={passengers.adults}
+                onChange={(e) =>
+                  setPassengers({
+                    ...passengers,
+                    adults: Math.max(1, Math.min(10, +e.target.value)),
+                  })
+                }
+                className="w-12 border rounded text-center"
+              />
+            </div>
+            <div className="flex justify-between items-center">
+              <span>Дети</span>
+              <input
+                type="number"
+                min="0"
+                max="10"
+                value={passengers.children}
+                onChange={(e) =>
+                  setPassengers({
+                    ...passengers,
+                    children: Math.max(0, Math.min(10, +e.target.value)),
+                  })
+                }
+                className="w-12 border rounded text-center"
+              />
+            </div>
+          </motion.div>
+        )}
+      </div>
+
+      {/* Submit Button */}
+      <button
+        type="submit"
+        className="bg-blue-600 text-white font-bold py-3 px-2 rounded-3xl shadow-lg hover:bg-blue-700"
+      >
+        Подобрать тур
+      </button>
     </div>
   );
 }
 
-export default FlightSearch;
+export default TourSearch;
