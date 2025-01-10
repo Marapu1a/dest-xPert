@@ -6,7 +6,7 @@ const Footer = () => {
     <footer className="bg-gray-100 text-gray-800">
       {/* First Block */}
       <div className="border-b border-gray-300 py-10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-5 gap-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-2 md:grid-cols-5 gap-8">
           {/* Column 1 */}
           <div>
             <div>
@@ -16,7 +16,7 @@ const Footer = () => {
                 <li>Контакты</li>
               </ul>
             </div>
-            <div className="mt-6">
+            <div className="mt-12">
               <div className="flex space-x-4">
                 <a href="#" className="text-blue-500">
                   <FaFacebook size={20} />
@@ -92,9 +92,9 @@ const Footer = () => {
                 <li>Отзывы</li>
               </ul>
             </div>
-            <div className="mt-6">
+            <div className="mt-6 ">
               <h4 className="font-bold mb-4">Направления</h4>
-              <ul className="grid grid-cols-2 gap-x-4 gap-y-2">
+              <ul className="grid md:grid-cols-2 gap-x-4 gap-y-2">
                 <li>Вьетнам</li>
                 <li>Мальдивы</li>
                 <li>Египет</li>

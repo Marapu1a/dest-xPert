@@ -51,9 +51,9 @@ function TourSearch() {
   }, [showCalendar]);
 
   return (
-    <div className="bg-white shadow-2xl rounded-lg p-8 flex items-center justify-between space-x-6 relative -mt-8 mb-8 z-10">
+    <div className="bg-white shadow-2xl rounded-lg p-8 flex flex-col md:flex-row items-center justify-between md:space-x-6 space-y-6 md:space-y-0 relative -mt-8 mb-8 z-10">
       {/* From City */}
-      <div className="relative w-1/5">
+      <div className="relative w-full md:w-1/5">
         <label className="text-gray-500 text-sm absolute -top-3 left-3 bg-white px-1">
           Откуда
         </label>
@@ -78,7 +78,7 @@ function TourSearch() {
       </div>
 
       {/* To City */}
-      <div className="relative w-1/5">
+      <div className="relative w-full md:w-1/5">
         <label className="text-gray-500 text-sm absolute -top-3 left-3 bg-white px-1">
           Куда
         </label>
@@ -103,7 +103,7 @@ function TourSearch() {
       </div>
 
       {/* Dates */}
-      <div className="relative w-1/5">
+      <div className="relative w-full md:w-1/5">
         <label className="text-gray-500 text-sm absolute -top-3 left-3 bg-white px-1">
           Даты тура
         </label>
@@ -144,7 +144,7 @@ function TourSearch() {
       </div>
 
       {/* Passengers */}
-      <div className="relative w-1/5">
+      <div className="relative w-full md:w-1/5">
         <label className="text-gray-500 text-sm absolute -top-3 left-3 bg-white px-1">
           Туристы
         </label>
@@ -202,7 +202,7 @@ function TourSearch() {
       {/* Submit Button */}
       <button
         type="submit"
-        className="bg-blue-600 text-white font-bold py-3 px-2 rounded-3xl shadow-lg hover:bg-blue-700"
+        className="bg-blue-600 text-white font-bold py-3 px-6 rounded-3xl shadow-lg hover:bg-blue-700"
       >
         Подобрать тур
       </button>

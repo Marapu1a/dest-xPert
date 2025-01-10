@@ -1,6 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { FaBars, FaTimes } from 'react-icons/fa';
+import {
+  FaBars,
+  FaTimes,
+  FaFacebook,
+  FaInstagram,
+  FaTelegram,
+  FaYoutube,
+} from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
 import logo from '@assets/header/logo.gif';
 
@@ -46,7 +53,7 @@ const HeaderWithMenu = () => {
   return (
     <>
       {/* Хедер */}
-      <header ref={headerRef} className="relative bg-white shadow-md z-50">
+      <header ref={headerRef} className="relative bg-white z-50">
         <div className="container mx-auto px-4 py-3 flex justify-between items-center">
           <Link to="/">
             <img src={logo} alt="Logo" className="h-8" loading="lazy" />
@@ -105,16 +112,22 @@ const HeaderWithMenu = () => {
             key="menu"
             className={`${
               isDesktop
-                ? 'absolute top-[55px] w-full left-0 bg-white shadow-lg rounded-md'
-                : 'fixed top-[55px] left-0 w-3/4 h-full bg-white shadow-md'
+                ? 'absolute top-[55px] w-full left-0 bg-white shadow-lg rounded-md '
+                : 'fixed top-[55px] left-0 w-3/4 h-full bg-white shadow-md flex flex-col space-y-6 sm:space-y-4 overflow-y-auto mobile-only-padding'
             } z-40`}
             initial={isDesktop ? { y: '-100%' } : { x: '-100%' }}
             animate={isDesktop ? { y: 0 } : { x: 0 }}
             exit={isDesktop ? { y: '-100%' } : { x: '-100%' }}
             transition={{ duration: 0.3 }}
           >
-            <div className="container mx-auto px-4 py-3 flex justify-between">
-              <div>
+            <div
+              className={
+                isDesktop
+                  ? 'md:container md:mx-auto md:px-4 md:py-8 md:flex md:justify-between'
+                  : ''
+              }
+            >
+              <div className="flex flex-col">
                 <h2 className="font-bold text-gray-800 mb-2">О нас</h2>
                 <Link
                   to="/team"
@@ -128,8 +141,25 @@ const HeaderWithMenu = () => {
                 >
                   Контакты
                 </Link>
+                <div className="flex mt-auto space-x-4">
+                  <a href="#" className="text-blue-500">
+                    <FaFacebook size={20} />
+                  </a>
+                  <a href="#" className="text-blue-500">
+                    <FaInstagram size={20} />
+                  </a>
+                  <a href="#" className="text-blue-500">
+                    <FaTelegram size={20} />
+                  </a>
+                  <a href="#" className="text-blue-500">
+                    <FaYoutube size={20} />
+                  </a>
+                </div>
+                <span className="text-gray-400 text-sm mobile-only-space">
+                  Мы в соц. сетях
+                </span>
               </div>
-              <div>
+              <div className="mobile-only-space">
                 <h2 className="font-bold text-gray-800 mb-2">Агентствам</h2>
                 <Link
                   to="/cabinet"
@@ -156,7 +186,11 @@ const HeaderWithMenu = () => {
                   Бонусная программа
                 </Link>
               </div>
-              <div>
+              <div className="mobile-only-space">
+                <h2 className="font-bold text-gray-800">Новости</h2>
+                <h2 className="font-bold text-gray-800 mobile-only-space mb-2">
+                  Направления
+                </h2>
                 <h2 className="font-bold text-gray-800 mb-2">Туристам</h2>
                 <Link
                   to="/where-to-buy"
@@ -170,6 +204,30 @@ const HeaderWithMenu = () => {
                 >
                   Отзывы
                 </Link>
+              </div>
+              <div>
+                <ul className="space-y-4">
+                  <li>
+                    +7 (700) 377 15 15
+                    <p className="text-sm text-gray-500">Служба поддержки</p>
+                  </li>
+                  <li>
+                    +7 (776) 877 15 15
+                    <p className="text-sm text-gray-500">Экстренный телефон</p>
+                  </li>
+                  <li>
+                    +7 (700) 377 15 15
+                    <p className="text-sm text-gray-500">WhatsApp</p>
+                  </li>
+                  <li>
+                    sales@selfietravel.kz
+                    <p className="text-sm text-gray-500">Наша почта</p>
+                  </li>
+                  <li>
+                    @selfietravelkz_bot
+                    <p className="text-sm text-gray-500">Telegram</p>
+                  </li>
+                </ul>
               </div>
             </div>
           </motion.div>
