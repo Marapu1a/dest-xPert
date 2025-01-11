@@ -19,7 +19,7 @@ const cities = [
   'Санкт-Петербург',
 ];
 
-function TourSearch() {
+function TicketSearch() {
   const [fromCity, setFromCity] = useState('');
   const [toCity, setToCity] = useState('');
   const [dates, setDates] = useState({ start: new Date(), end: new Date() });
@@ -202,12 +202,12 @@ function TourSearch() {
       {/* Submit Button */}
       <button
         type="submit"
-        className="bg-blue-600 text-white font-bold py-3 px-6 rounded-3xl shadow-lg hover:bg-blue-700"
+        className="bg-blue-600 text-white text-sm font-bold py-1 px-2 rounded-3xl shadow-lg hover:bg-blue-700"
       >
-        Подобрать тур
+        Подобрать билеты
       </button>
     </div>
   );
 }
 
-export default TourSearch;
+export default TicketSearch;

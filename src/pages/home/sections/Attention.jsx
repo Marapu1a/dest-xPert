@@ -8,7 +8,7 @@ import attention4 from '@assets/sections/attention-4.webp';
 
 const AttentionSection = () => {
   return (
-    <div className="attention-section py-8">
+    <div className="bg-white p-6">
       <h2 className="text-3xl font-bold mb-6">Обратите внимание</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {[
@@ -48,7 +48,7 @@ const AttentionSection = () => {
               <p className="text-shadow-md mb-4">{text}</p>
               <Link
                 to="#"
-                className={`inline-block font-bold text-center px-6 py-3 rounded-full border-2 border-white shadow-md transition-transform transform hover:scale-105 hover:bg-opacity-80`}
+                className={`inline-block font-bold text-center px-6 py-3 rounded-full border-2 border-white shadow-xl transition-transform transform hover:scale-105 hover:bg-opacity-80`}
                 style={{
                   maxWidth: '200px',
                   backgroundColor: 'white',

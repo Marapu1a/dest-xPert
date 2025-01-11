@@ -19,7 +19,7 @@ const destinations = [
 
 const SeasonalDestinations = () => {
   return (
-    <div className="bg-gray-100 p-6">
+    <div className="bg-white p-6">
       <h2 className="text-2xl font-bold mb-4">Сезонные направления</h2>
       <div className="flex gap-4">
         {/* Left Block */}
@@ -29,14 +29,14 @@ const SeasonalDestinations = () => {
               <Link
                 key={dest.name}
                 to={dest.link}
-                className="relative flex-1 h-32 rounded-lg overflow-hidden hover:scale-105 transition-transform"
+                className="relative flex-1 h-32 rounded-lg overflow-hidden group"
               >
                 <img
                   src={dest.image}
                   alt={dest.name}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-black bg-opacity-0 flex items-center justify-center">
+                <div className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
                   <span className="text-white font-bold text-lg text-shadow-md">
                     {dest.name}
                   </span>
@@ -46,14 +46,14 @@ const SeasonalDestinations = () => {
           </div>
           <Link
             to={destinations[2].link}
-            className="relative h-64 rounded-lg overflow-hidden hover:scale-105 transition-transform"
+            className="relative h-64 rounded-lg overflow-hidden group"
           >
             <img
               src={destinations[2].image}
               alt={destinations[2].name}
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
             />
-            <div className="absolute inset-0 bg-black bg-opacity-0 flex items-center justify-center">
+            <div className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
               <span className="text-white font-bold text-lg text-shadow-md">
                 {destinations[2].name}
               </span>
@@ -64,14 +64,14 @@ const SeasonalDestinations = () => {
         <div className="flex flex-col gap-4 w-1/2">
           <Link
             to={destinations[3].link}
-            className="relative h-64 rounded-lg overflow-hidden hover:scale-105 transition-transform"
+            className="relative h-64 rounded-lg overflow-hidden group"
           >
             <img
               src={destinations[3].image}
               alt={destinations[3].name}
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
             />
-            <div className="absolute inset-0 bg-black bg-opacity-0 flex items-center justify-center">
+            <div className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
               <span className="text-white font-bold text-lg text-shadow-md">
                 {destinations[3].name}
               </span>
@@ -82,14 +82,14 @@ const SeasonalDestinations = () => {
               <Link
                 key={dest.name}
                 to={dest.link}
-                className="relative flex-1 h-32 rounded-lg overflow-hidden hover:scale-105 transition-transform"
+                className="relative flex-1 h-32 rounded-lg overflow-hidden group"
               >
                 <img
                   src={dest.image}
                   alt={dest.name}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-black bg-opacity-0 flex items-center justify-center">
+                <div className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
                   <span className="text-white font-bold text-lg text-shadow-md">
                     {dest.name}
                   </span>

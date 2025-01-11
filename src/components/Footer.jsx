@@ -18,16 +18,28 @@ const Footer = () => {
             </div>
             <div className="mt-12">
               <div className="flex space-x-4">
-                <a href="#" className="text-blue-500">
+                <a
+                  href="#"
+                  className="text-blue-500 transition-transform  hover:scale-110"
+                >
                   <FaFacebook size={20} />
                 </a>
-                <a href="#" className="text-blue-500">
+                <a
+                  href="#"
+                  className="text-blue-500 transition-transform  hover:scale-110"
+                >
                   <FaInstagram size={20} />
                 </a>
-                <a href="#" className="text-blue-500">
+                <a
+                  href="#"
+                  className="text-blue-500 transition-transform  hover:scale-110"
+                >
                   <FaTelegram size={20} />
                 </a>
-                <a href="#" className="text-blue-500">
+                <a
+                  href="#"
+                  className="text-blue-500 transition-transform  hover:scale-110"
+                >
                   <FaYoutube size={20} />
                 </a>
               </div>

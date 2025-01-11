@@ -4,7 +4,7 @@ import newsPhoto from '@assets/sections/news-photo.webp';
 
 function News() {
   return (
-    <div className="bg-white shadow-md rounded p-6 mb-8">
+    <div className="bg-white rounded p-6 mb-8">
       <h2 className="text-2xl font-bold mb-6">Новости</h2>
       <div className="flex flex-col md:flex-row">
         {/* Левый блок с фото */}
