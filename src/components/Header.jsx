@@ -10,6 +10,7 @@ import {
 } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
 import logo from '@assets/header/logo.gif';
+import CurrencyRates from '@/utils/CurrencyRates';
 
 const HeaderWithMenu = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -54,15 +55,15 @@ const HeaderWithMenu = () => {
     <>
       {/* Хедер */}
       <header ref={headerRef} className="relative bg-white z-50">
-        <div className="container mx-auto px-4 py-3 flex justify-between items-center">
+        <div className="container mx-auto px-4 py-3 flex items-center">
           <Link to="/">
             <img src={logo} alt="Logo" className="h-8" loading="lazy" />
           </Link>
 
-          <div className="hidden md:flex space-x-4">
-            <span className="text-gray-700">+7 700 377-15-15</span>
+          <div className="hidden md:flex space-x-4 ml-auto">
+            <span className="text-pretty">+7 700 377-15-15</span>
             <span>|</span>
-            <span className="text-gray-700">USD: 533 / EUR: 554</span>
+            <CurrencyRates />
           </div>
 
           <button
@@ -74,7 +75,7 @@ const HeaderWithMenu = () => {
 
           <button
             onClick={handleMenuButtonClick}
-            className="hidden md:inline-flex items-center z-50 bg-blue-600 text-white px-4 py-2 rounded"
+            className="hidden md:inline-flex items-center justify-center z-50 bg-blue-600 text-white px-4 py-2 ml-4 rounded w-28"
           >
             {menuOpen ? (
               <>
