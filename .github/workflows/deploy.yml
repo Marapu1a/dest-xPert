@@ -25,20 +25,10 @@ jobs:
         run: npm run build
 
       - name: Clean Deploy Directory
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
         run: |
-          echo "${SSH_PRIVATE_KEY}" > private_key
-          chmod 600 private_key
-          ssh -i private_key -o StrictHostKeyChecking=no root@10.25.84.2 "rm -rf /var/www/destxpert.travel/*"
-          rm -f private_key
+          ssh -i /root/.ssh/deploy_keys/private_key -o StrictHostKeyChecking=no root@10.25.84.2 "rm -rf /var/www/destxpert.travel/*"
 
       - name: Deploy to Server
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
         run: |
-          echo "${SSH_PRIVATE_KEY}" > private_key
-          chmod 600 private_key
-          rsync -avz -e "ssh -i private_key -o StrictHostKeyChecking=no" \
+          rsync -avz -e "ssh -i /root/.ssh/deploy_keys/private_key -o StrictHostKeyChecking=no" \
             dist/ root@10.25.84.2:/var/www/destxpert.travel/
-          rm -f private_key
