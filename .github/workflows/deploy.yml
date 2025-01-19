@@ -24,6 +24,15 @@ jobs:
       - name: Build Project
         run: npm run build
 
+      - name: Clean Deploy Directory
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        run: |
+          echo "${SSH_PRIVATE_KEY}" > private_key
+          chmod 600 private_key
+          ssh -i private_key -o StrictHostKeyChecking=no root@10.25.84.2 "rm -rf /var/www/destxpert.travel/*"
+          rm -f private_key
+
       - name: Deploy to Server
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
