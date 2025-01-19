@@ -40,5 +40,5 @@ jobs:
           echo "${SSH_PRIVATE_KEY}" > private_key
           chmod 600 private_key
           rsync -avz -e "ssh -i private_key -o StrictHostKeyChecking=no" \
-            dist/ root@10.25.84.2:/var/www/destxpert.travel
+            dist/ root@10.25.84.2:/var/www/destxpert.travel/
           rm -f private_key

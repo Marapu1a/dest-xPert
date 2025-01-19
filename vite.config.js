@@ -13,6 +13,7 @@ export default defineConfig({
     },
   },
   build: {
-    outDir: '/var/www/destxpert.travel', // Путь на сервере
+    outDir: 'dist', // Собирается локально на runner
+    emptyOutDir: true,
   },
 });
