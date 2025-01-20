@@ -33,7 +33,9 @@ jobs:
         run: |
           sudo sstpc --log-stderr --cert-warn --user "${{ secrets.VPN_USER }}" --password "${{ secrets.VPN_PASSWORD }}" \
           gate.destxpert.travel:442 usepeerdns require-mschap-v2 refuse-eap noauth &
-          sleep 10 # даем время для установки VPN
+
+      - name: Wait for VPN
+        run: sleep 10 # даем время для установки VPN
 
       - name: Debug VPN Connection
         run: |
