@@ -7,6 +7,7 @@ import {
   FaInstagram,
   FaTelegram,
   FaYoutube,
+  FaUserAlt,
 } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
 import logo from '@assets/header/logo.gif';
@@ -60,9 +61,41 @@ const HeaderWithMenu = () => {
             <img src={logo} alt="Logo" className="h-8" loading="lazy" />
           </Link>
 
+          <div className="hidden md:flex space-x-16 items-center ml-8 mr-auto">
+            <Link
+              to="/about"
+              className="text-gray-700 hover:text-blue-600 font-semibold"
+            >
+              О нас
+            </Link>
+            <Link
+              to="/agency"
+              className="text-gray-700 hover:text-blue-600 font-semibold"
+            >
+              Агентствам
+            </Link>
+            <Link
+              to="/tourists"
+              className="text-gray-700 hover:text-blue-600 font-semibold"
+            >
+              Туристам
+            </Link>
+            <Link
+              to="/cabinet"
+              className="relative flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 hover:bg-blue-600 transition-colors"
+            >
+              <FaUserAlt
+                className="text-gray-700 hover:text-white transition-colors"
+                size={20}
+              />
+            </Link>
+          </div>
+
           <div className="hidden md:flex space-x-4 ml-auto">
-            <span className="text-pretty">+7 700 377-15-15</span>
-            <span>|</span>
+            {/* Номер телефона */}
+            <span className="text-pretty"></span>
+            {/* Перемычка */}
+            <span></span>
             <CurrencyRates />
           </div>
 
