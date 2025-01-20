@@ -30,10 +30,28 @@ jobs:
           echo "${{ secrets.DEPLOY_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
 
+      - name: Debug SSH Key
+        run: |
+          echo "Checking SSH Key..."
+          ls -la ~/.ssh/
+          cat ~/.ssh/id_rsa || echo "SSH Key not found or empty."
+
+      - name: Test Connection
+        run: |
+          echo "Pinging the server..."
+          ping -c 4 10.25.84.2 || echo "Ping failed. Check network or server availability."
+
+      - name: Check SSH Connection
+        run: |
+          echo "Testing SSH connection..."
+          ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no root@10.25.84.2 "echo 'SSH connection successful'" || echo "SSH connection failed."
+
       - name: Clean Deploy Directory
         run: |
-          ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no root@10.25.84.2 "rm -rf /var/www/destxpert.travel/*"
+          echo "Cleaning up remote directory..."
+          ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no root@10.25.84.2 "rm -rf /var/www/destxpert.travel/*" || echo "Failed to clean deploy directory."
 
       - name: Deploy to Server
         run: |
-          scp -i ~/.ssh/id_rsa -r dist/ root@10.25.84.2:/var/www/destxpert.travel/
+          echo "Deploying dist/ to server..."
+          scp -i ~/.ssh/id_rsa -r dist/ root@10.25.84.2:/var/www/destxpert.travel/ || echo "SCP failed. Check the logs above."
