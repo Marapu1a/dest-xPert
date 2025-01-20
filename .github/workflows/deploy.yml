@@ -24,6 +24,12 @@ jobs:
       - name: Build Project
         run: npm run build
 
+      - name: Add SSH Key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.DEPLOY_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+
       - name: Clean Deploy Directory
         run: |
           ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no root@10.25.84.2 "rm -rf /var/www/destxpert.travel/*"
