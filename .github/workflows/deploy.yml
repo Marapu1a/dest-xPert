@@ -27,12 +27,25 @@ jobs:
       - name: Install SSTP VPN Client
         run: |
           sudo apt-get update
-          sudo apt-get install -y sstp-client ppp
+          sudo apt-get install -y sstp-client ppp iproute2 net-tools
 
       - name: Connect to VPN
         run: |
           sudo sstpc --log-stderr --cert-warn --user "${{ secrets.VPN_USER }}" --password "${{ secrets.VPN_PASSWORD }}" \
           gate.destxpert.travel:442 usepeerdns require-mschap-v2 refuse-eap noauth &
+          sleep 10 # даем время для установки VPN
+
+      - name: Debug VPN Connection
+        run: |
+          echo "Checking VPN connection..."
+          ip route
+          ifconfig
+          ps aux | grep sstpc || echo "VPN process not running"
+
+      - name: Add VPN Route
+        run: |
+          echo "Adding VPN route..."
+          sudo ip route add 10.25.84.0/24 dev ppp0 || echo "Failed to add VPN route"
 
       - name: Add SSH Key
         run: |
