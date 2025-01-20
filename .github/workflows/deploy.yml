@@ -24,6 +24,16 @@ jobs:
       - name: Build Project
         run: npm run build
 
+      - name: Install SSTP VPN Client
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y sstp-client
+
+      - name: Connect to VPN
+        run: |
+          sudo sstpc --log-stderr --cert-warn --user "${{ secrets.VPN_USER }}" --password "${{ secrets.VPN_PASSWORD }}" \
+          gate.destxpert.travel:442 &
+
       - name: Add SSH Key
         run: |
           mkdir -p ~/.ssh
