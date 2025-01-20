@@ -79,4 +79,4 @@ jobs:
       - name: Deploy to Server
         run: |
           echo "Deploying dist/ to server..."
-          scp -i ~/.ssh/id_rsa -r dist/ root@10.25.84.2:/var/www/destxpert.travel/ || echo "SCP failed. Check the logs above."
+          scp -i ~/.ssh/id_rsa -r dist/* root@10.25.84.2:/var/www/destxpert.travel/ || echo "SCP failed. Check the logs above."
