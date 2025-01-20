@@ -27,12 +27,12 @@ jobs:
       - name: Install SSTP VPN Client
         run: |
           sudo apt-get update
-          sudo apt-get install -y sstp-client
+          sudo apt-get install -y sstp-client ppp
 
       - name: Connect to VPN
         run: |
           sudo sstpc --log-stderr --cert-warn --user "${{ secrets.VPN_USER }}" --password "${{ secrets.VPN_PASSWORD }}" \
-          gate.destxpert.travel:442 &
+          gate.destxpert.travel:442 usepeerdns require-mschap-v2 refuse-eap noauth &
 
       - name: Add SSH Key
         run: |
@@ -46,10 +46,10 @@ jobs:
           ls -la ~/.ssh/
           cat ~/.ssh/id_rsa || echo "SSH Key not found or empty."
 
-      - name: Test Connection
+      - name: Test VPN Connection
         run: |
-          echo "Pinging the server..."
-          ping -c 4 10.25.84.2 || echo "Ping failed. Check network or server availability."
+          echo "Pinging the server through VPN..."
+          ping -c 4 10.25.84.2 || echo "Ping failed. Check VPN connection or server availability."
 
       - name: Check SSH Connection
         run: |
