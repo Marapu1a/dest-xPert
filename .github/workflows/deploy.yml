@@ -26,8 +26,8 @@ jobs:
 
       - name: Clean Deploy Directory
         run: |
-          ssh -i /root/.ssh/deploy_keys/private_key -o StrictHostKeyChecking=no root@10.25.84.2 "rm -rf /var/www/destxpert.travel/*"
+          ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no root@10.25.84.2 "rm -rf /var/www/destxpert.travel/*"
 
       - name: Deploy to Server
         run: |
-          scp -i /root/.ssh/deploy_keys/private_key -r dist/ root@10.25.84.2:/var/www/destxpert.travel/
+          scp -i ~/.ssh/id_rsa -r dist/ root@10.25.84.2:/var/www/destxpert.travel/
