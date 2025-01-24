@@ -80,3 +80,8 @@ jobs:
         run: |
           echo "Deploying dist/ to server..."
           scp -i ~/.ssh/id_rsa -r dist/* root@10.25.84.2:/var/www/destxpert.travel/ || echo "SCP failed. Check the logs above."
+
+      - name: Fix Ownership on Server
+        run: |
+          echo "Setting correct ownership for deployed files..."
+          ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no root@10.25.84.2 "chown -R www-data:www-data /var/www/destxpert.travel/" || echo "Failed to set ownership."

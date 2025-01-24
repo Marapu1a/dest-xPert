@@ -3,9 +3,9 @@ import { FaFacebook, FaInstagram, FaTelegram, FaYoutube } from 'react-icons/fa';
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-100 text-gray-800">
+    <footer className="bg-blue-100 text-blue-800">
       {/* First Block */}
-      <div className="border-b border-gray-300 py-10">
+      <div className="border-b border-blue-300 py-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-2 md:grid-cols-5 gap-8">
           {/* Column 1 */}
           <div>
@@ -43,7 +43,7 @@ const Footer = () => {
                   <FaYoutube size={20} />
                 </a>
               </div>
-              <p className="text-sm text-gray-500 mt-2">Мы в соц. сетях</p>
+              <p className="text-sm text-blue-500 mt-2">Мы в соц. сетях</p>
             </div>
           </div>
 
@@ -52,23 +52,23 @@ const Footer = () => {
             <ul className="space-y-4">
               <li>
                 +7 (700) 377 15 15
-                <p className="text-sm text-gray-500">Служба поддержки</p>
+                <p className="text-sm text-blue-500">Служба поддержки</p>
               </li>
               <li>
                 +7 (776) 877 15 15
-                <p className="text-sm text-gray-500">Экстренный телефон</p>
+                <p className="text-sm text-blue-500">Экстренный телефон</p>
               </li>
               <li>
                 +7 (700) 377 15 15
-                <p className="text-sm text-gray-500">WhatsApp</p>
+                <p className="text-sm text-blue-500">WhatsApp</p>
               </li>
               <li>
                 sales@selfietravel.kz
-                <p className="text-sm text-gray-500">Наша почта</p>
+                <p className="text-sm text-blue-500">Наша почта</p>
               </li>
               <li>
                 @selfietravelkz_bot
-                <p className="text-sm text-gray-500">Telegram</p>
+                <p className="text-sm text-blue-500">Telegram</p>
               </li>
             </ul>
           </div>
@@ -131,7 +131,7 @@ const Footer = () => {
       </div>
 
       {/* Second Block */}
-      <div className="text-center text-sm text-gray-500 py-4 border-b border-gray-300">
+      <div className="text-center text-sm text-blue-500 py-4 border-b border-blue-300">
         <p>
           © 2016 — 2024 Международный туроператор ТОО SELFIE TRAVEL (СЕЛФИ
           ТРЕВЕЛ) имеющий лицензию ТО - 1314 от 03.12.2016 БИН/БСН: 140240028966
@@ -141,7 +141,7 @@ const Footer = () => {
       </div>
 
       {/* Third Block */}
-      <div className="bg-gray-800 text-white text-sm py-4">
+      <div className="bg-blue-900 text-blue-100 text-sm py-4">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <p>
             Продолжая использовать наш сайт, вы подтверждаете свое согласие на

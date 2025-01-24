@@ -18,26 +18,26 @@ function News() {
         {/* Правый блок с тремя новостями */}
         <div className="flex-1 md:w-2/3 md:ml-4 flex flex-col justify-between">
           <div className="border-b pb-4 mb-4">
-            <span className="text-gray-500 text-sm">01.01.2025</span>
-            <h3 className="text-lg font-bold text-blue-500 hover:underline">
+            <span className="text-blue-300 text-sm">01.01.2025</span>
+            <h3 className="text-lg font-bold text-blue-500 hover:text-blue-400">
               <Link to="/news/1">Заголовок новости 1</Link>
             </h3>
           </div>
           <div className="border-b pb-4 mb-4">
-            <span className="text-gray-500 text-sm">02.01.2025</span>
-            <h3 className="text-lg font-bold text-blue-500 hover:underline">
+            <span className="text-blue-300 text-sm">02.01.2025</span>
+            <h3 className="text-lg font-bold text-blue-500 hover:text-blue-400">
               <Link to="/news/2">Заголовок новости 2</Link>
             </h3>
           </div>
           <div>
-            <span className="text-gray-500 text-sm">03.01.2025</span>
-            <h3 className="text-lg font-bold text-blue-500 hover:underline">
+            <span className="text-blue-300 text-sm">03.01.2025</span>
+            <h3 className="text-lg font-bold text-blue-500 hover:text-blue-400">
               <Link to="/news/3">Заголовок новости 3</Link>
             </h3>
           </div>
           <Link
             to="/news"
-            className="mt-4 text-center bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            className="mt-4 text-center bg-blue-400 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
           >
             Показать все
           </Link>

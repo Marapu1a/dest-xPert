@@ -16,25 +16,25 @@ const AttentionSection = () => {
             img: attention1,
             title: 'Селфи Премиум',
             text: 'Выбирая тур с отметкой «Selfie Premium», автоматически будут предложены отели класса люкс, встреча с цветами, индивидуальный трансфер.',
-            bgColor: 'bg-blue-500',
+            bgColor: 'bg-blue-400',
           },
           {
             img: attention2,
             title: 'Чат-бот MAX',
             text: 'Max: телеграм-бот и персональный помощник. Удобно для смартфона. Доступ 24/7. Оперативный ответ на запрос.',
-            bgColor: 'bg-green-500',
+            bgColor: 'bg-blue-300',
           },
           {
             img: attention3,
             title: 'Обучение',
             text: 'Регулярно проводятся образовательные мероприятия для турагентов в разнообразных форматах.',
-            bgColor: 'bg-yellow-500',
+            bgColor: 'bg-blue-200',
           },
           {
             img: attention4,
             title: 'Коллаборация',
             text: 'Открыты к сотрудничеству и партнерству. Работая в сфере услуг, мы понимаем, как много зависит от хороших коллабораций.',
-            bgColor: 'bg-red-500',
+            bgColor: 'bg-blue-500',
           },
         ].map(({ img, title, text, bgColor }, index) => (
           <div
@@ -48,18 +48,18 @@ const AttentionSection = () => {
               <p className="text-shadow-md mb-4">{text}</p>
               <Link
                 to="#"
-                className={`inline-block font-bold text-center px-6 py-3 rounded-full border-2 border-white shadow-xl transition-transform transform hover:scale-105 hover:bg-opacity-80`}
+                className={`inline-block font-bold text-center px-6 py-3 rounded-full border-2 border-blue-300 shadow-xl transition-transform transform hover:scale-105 hover:bg-opacity-80`}
                 style={{
                   maxWidth: '200px',
                   backgroundColor: 'white',
                   color:
                     bgColor.split('-')[1] === 'blue'
-                      ? '#1D4ED8'
+                      ? '#1E3A8A'
                       : bgColor.split('-')[1] === 'green'
-                        ? '#10B981'
+                        ? '#1E40AF'
                         : bgColor.split('-')[1] === 'yellow'
-                          ? '#F59E0B'
-                          : '#EF4444',
+                          ? '#3B82F6'
+                          : '#2563EB',
                 }}
               >
                 Подробнее
