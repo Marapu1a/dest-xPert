@@ -55,37 +55,37 @@ const HeaderWithMenu = () => {
   return (
     <>
       {/* Хедер */}
-      <header ref={headerRef} className="relative bg-blue-400 z-50">
+      <header ref={headerRef} className="relative bg-white z-50">
         <div className="container mx-auto px-4 py-3 flex items-center">
           <Link to="/">
-            <img src={logo} alt="Logo" className="h-8" loading="lazy" />
+            <img src={logo} alt="Logo" className="h-14" loading="lazy" />
           </Link>
 
           <div className="hidden md:flex space-x-16 items-center ml-8 mr-auto">
             <Link
               to="/about"
-              className="text-white hover:text-[#f0e68c] font-semibold"
+              className="text-black hover:text-gray-600 font-semibold transition-colors"
             >
               О нас
             </Link>
             <Link
               to="/agency"
-              className="text-white hover:text-[#f0e68c] font-semibold"
+              className="text-black hover:text-gray-600 font-semibold transition-colors"
             >
               Агентствам
             </Link>
             <Link
               to="/tourists"
-              className="text-white hover:text-[#f0e68c] font-semibold"
+              className="text-black hover:text-gray-600 font-semibold transition-colors"
             >
               Туристам
             </Link>
             <Link
               to="/cabinet"
-              className="relative flex items-center justify-center w-10 h-10 rounded-full bg-[#f5f5dc] hover:bg-[#f0e68c] transition-colors"
+              className="relative flex items-center justify-center w-10 h-10 rounded-full bg-gray-200 hover:bg-gray-300 transition-colors"
             >
               <FaUserAlt
-                className="text-blue-600 hover:text-white transition-colors"
+                className="text-black hover:text-gray-800 transition-colors"
                 size={20}
               />
             </Link>
@@ -97,14 +97,14 @@ const HeaderWithMenu = () => {
 
           <button
             onClick={handleMenuButtonClick}
-            className="z-50 bg-[#f5f5dc] text-blue-600 px-4 py-2 rounded md:hidden hover:bg-[#f0e68c]"
+            className="z-50 bg-gray-200 text-black px-4 py-2 rounded md:hidden hover:bg-gray-300 transition-colors"
           >
             {menuOpen ? <FaTimes size={18} /> : <FaBars size={18} />}
           </button>
 
           <button
             onClick={handleMenuButtonClick}
-            className="hidden md:inline-flex items-center justify-center z-50 bg-[#f5f5dc] text-blue-600 px-4 py-2 ml-4 rounded w-28 hover:bg-[#f0e68c]"
+            className="hidden md:inline-flex items-center justify-center z-50 bg-gray-200 text-black px-4 py-2 ml-4 rounded w-28 hover:bg-gray-300 transition-colors"
           >
             {menuOpen ? (
               <>
