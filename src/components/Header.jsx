@@ -56,12 +56,17 @@ const HeaderWithMenu = () => {
     <>
       {/* Хедер */}
       <header ref={headerRef} className="relative bg-white z-50">
-        <div className="container mx-auto px-4 py-3 flex items-center">
+        <div className="container mx-auto px-4 py-3 flex items-center justify-between">
           <Link to="/">
-            <img src={logo} alt="Logo" className="h-14" loading="lazy" />
+            <img
+              src={logo}
+              alt="Logo"
+              className="h-14 md:w-[4rem] lg:w-auto"
+              loading="lazy"
+            />
           </Link>
 
-          <div className="hidden md:flex space-x-16 items-center ml-8 mr-auto">
+          <div className="hidden lg:flex space-x-16 items-center ml-8 mr-auto">
             <Link
               to="/about"
               className="text-black hover:text-gray-600 font-semibold transition-colors"
@@ -91,7 +96,7 @@ const HeaderWithMenu = () => {
             </Link>
           </div>
 
-          <div className="hidden md:flex space-x-4 ml-auto">
+          <div className="md:flex mr-2 space-x-4 ml-auto">
             <CurrencyRates />
           </div>
 
@@ -142,8 +147,8 @@ const HeaderWithMenu = () => {
             key="menu"
             className={`${
               isDesktop
-                ? 'absolute top-[55px] w-full left-0 bg-blue-300 shadow-lg rounded-md '
-                : 'fixed top-[55px] left-0 w-3/4 h-full bg-blue-300 shadow-md flex flex-col space-y-6 sm:space-y-4 overflow-y-auto mobile-only-padding'
+                ? 'absolute top-[66px] w-full left-0 bg-blue-300 shadow-lg rounded-md '
+                : 'fixed top-[66px] left-0 w-3/4 h-full bg-blue-300 shadow-md flex flex-col space-y-6 sm:space-y-4 overflow-y-auto mobile-only-padding'
             } z-40`}
             initial={isDesktop ? { y: '-100%' } : { x: '-100%' }}
             animate={isDesktop ? { y: 0 } : { x: 0 }}
