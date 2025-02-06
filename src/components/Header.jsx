@@ -10,7 +10,7 @@ import {
   FaUserAlt,
 } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
-import logo from '@assets/header/logo.png';
+import logo from '@assets/header/logo/logo.png';
 import CurrencyRates from '@/utils/CurrencyRates';
 
 const HeaderWithMenu = () => {
@@ -57,7 +57,13 @@ const HeaderWithMenu = () => {
       {/* Хедер */}
       <header ref={headerRef} className="relative bg-white z-50">
         <div className="container mx-auto px-4 py-3 flex items-center justify-between">
-          <Link to="/">
+          <Link
+            to="/"
+            onClick={() => {
+              sessionStorage.clear(); // Очищаем сохраненные скролл-позиции
+              window.scrollTo(0, 0); // Сбрасываем в начало страницы
+            }}
+          >
             <img
               src={logo}
               alt="Logo"
@@ -69,19 +75,19 @@ const HeaderWithMenu = () => {
           <div className="hidden lg:flex space-x-16 items-center ml-8 mr-auto">
             <Link
               to="/about"
-              className="text-black hover:text-gray-600 font-semibold transition-colors"
+              className="text-[#252630] hover:text-gray-600 font-semibold transition-colors"
             >
               О нас
             </Link>
             <Link
               to="/agency"
-              className="text-black hover:text-gray-600 font-semibold transition-colors"
+              className="text-[#252630] hover:text-gray-600 font-semibold transition-colors"
             >
               Агентствам
             </Link>
             <Link
               to="/tourists"
-              className="text-black hover:text-gray-600 font-semibold transition-colors"
+              className="text-[#252630] hover:text-gray-600 font-semibold transition-colors"
             >
               Туристам
             </Link>
@@ -90,7 +96,7 @@ const HeaderWithMenu = () => {
               className="relative flex items-center justify-center w-10 h-10 rounded-full bg-gray-200 hover:bg-gray-300 transition-colors"
             >
               <FaUserAlt
-                className="text-black hover:text-gray-800 transition-colors"
+                className="text-[#252630] hover:text-gray-800 transition-colors"
                 size={20}
               />
             </Link>
@@ -102,14 +108,14 @@ const HeaderWithMenu = () => {
 
           <button
             onClick={handleMenuButtonClick}
-            className="z-50 bg-gray-200 text-black px-4 py-2 rounded md:hidden hover:bg-gray-300 transition-colors"
+            className="z-50 bg-gray-200 text-[#252630] px-4 py-2 rounded md:hidden hover:bg-gray-300 transition-colors"
           >
             {menuOpen ? <FaTimes size={18} /> : <FaBars size={18} />}
           </button>
 
           <button
             onClick={handleMenuButtonClick}
-            className="hidden md:inline-flex items-center justify-center z-50 bg-gray-200 text-black px-4 py-2 ml-4 rounded w-28 hover:bg-gray-300 transition-colors"
+            className="hidden md:inline-flex items-center justify-center z-50 bg-gray-200 text-[#252630] px-4 py-2 ml-4 rounded w-28 hover:bg-gray-300 transition-colors"
           >
             {menuOpen ? (
               <>

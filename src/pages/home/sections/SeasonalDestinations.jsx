@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import egypt from '@assets/sections/egypt.webp';
-import tailand from '@assets/sections/tailand.webp';
-import kamboja from '@assets/sections/kamboja.webp';
-import vietnam from '@assets/sections/vietnam.webp';
-import china from '@assets/sections/china.webp';
-import maldives from '@assets/sections/maldives.webp';
+import egypt from '@assets/sections/destination/egypt.webp';
+import tailand from '@assets/sections/destination/tailand.webp';
+import kamboja from '@assets/sections/destination/kamboja.webp';
+import vietnam from '@assets/sections/destination/vietnam.webp';
+import china from '@assets/sections/destination/china.webp';
+import maldives from '@assets/sections/destination/maldives.webp';
 
 const destinations = [
   { name: 'Египет', link: '/egypt', image: egypt },
@@ -20,8 +20,15 @@ const destinations = [
 const SeasonalDestinations = () => {
   return (
     <div className="bg-white p-6">
-      <h2 className="text-2xl font-bold mb-4">Сезонные направления</h2>
-      <div className="flex gap-4">
+      <h2 className="inline text-2xl font-bold">
+        Популярные страны и направления
+      </h2>
+      <Link to={'/destinations'}>
+        <button className="px-4 py-2 rounded-full bg-[#F5F7FA] text-[#252630] text-xs font-medium shadow-sm">
+          Все страны и направления
+        </button>
+      </Link>
+      <div className="flex mt-6 gap-4">
         {/* Left Block */}
         <div className="flex flex-col gap-4 w-1/2">
           <div className="flex gap-4">
@@ -46,6 +53,10 @@ const SeasonalDestinations = () => {
           </div>
           <Link
             to={destinations[2].link}
+            onClick={() => {
+              sessionStorage.clear(); // Очищаем сохраненные скролл-позиции
+              window.scrollTo(0, 0); // Сбрасываем в начало страницы
+            }}
             className="relative h-64 rounded-lg overflow-hidden group"
           >
             <img

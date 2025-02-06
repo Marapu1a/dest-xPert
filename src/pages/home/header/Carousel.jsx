@@ -5,11 +5,11 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
-import image1 from '@assets/header/Eurotour.webp';
-import image2 from '@assets/header/Roadshow.webp';
-import image3 from '@assets/header/Popular.webp';
-import image4 from '@assets/header/TG.webp';
-import image5 from '@assets/header/Training.webp';
+import image1 from '@assets/header/carousel/Eurotour.webp';
+import image2 from '@assets/header/carousel/Roadshow.webp';
+import image3 from '@assets/header/carousel/Popular.webp';
+import image4 from '@assets/header/carousel/TG.webp';
+import image5 from '@assets/header/carousel/Training.webp';
 
 const slides = [
   {

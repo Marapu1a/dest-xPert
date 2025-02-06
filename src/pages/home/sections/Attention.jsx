@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import attention1 from '@assets/sections/attention-1.webp';
-import attention2 from '@assets/sections/attention-2.webp';
-import attention3 from '@assets/sections/attention-3.webp';
-import attention4 from '@assets/sections/attention-4.webp';
+import attention1 from '@assets/sections/attention/attention-1.webp';
+import attention2 from '@assets/sections/attention/attention-2.webp';
+import attention3 from '@assets/sections/attention/attention-3.webp';
+import attention4 from '@assets/sections/attention/attention-4.webp';
 
 const slides = [
   {
