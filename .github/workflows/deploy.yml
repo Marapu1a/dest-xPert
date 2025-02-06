@@ -34,8 +34,17 @@ jobs:
           sudo sstpc --log-stderr --cert-warn --user "${{ secrets.VPN_USER }}" --password "${{ secrets.VPN_PASSWORD }}" \
           gate.destxpert.travel:442 usepeerdns require-mschap-v2 refuse-eap noauth &
 
-      - name: Wait for VPN
-        run: sleep 30 # даем время для установки VPN
+      - name: Wait for VPN Connection
+        run: |
+          echo "Waiting for VPN to establish..."
+          for i in {1..30}; do
+            if ifconfig | grep -q ppp0; then
+              echo "VPN connected!"
+              break
+            fi
+            echo "Waiting..."
+            sleep 1
+          done
 
       - name: Debug VPN Connection
         run: |
@@ -46,13 +55,18 @@ jobs:
 
       - name: Add VPN Route
         run: |
-          echo "Adding VPN route..."
-          sudo ip route add 10.25.84.0/24 dev ppp0 || echo "Failed to add VPN route"
+          if ifconfig | grep -q ppp0; then
+            echo "Adding VPN route..."
+            sudo ip route add 10.25.84.0/24 dev ppp0 || echo "Failed to add VPN route"
+          else
+            echo "VPN interface ppp0 not found! Skipping route setup."
+            exit 1
+          fi
 
       - name: Add SSH Key
         run: |
           mkdir -p ~/.ssh
-          echo "${{ secrets.DEPLOY_KEY }}" > ~/.ssh/id_rsa
+          echo "${{ secrets.DEPLOY_KEY }}" | tr -d '\r' > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
 
       - name: Debug SSH Key
@@ -69,7 +83,11 @@ jobs:
       - name: Check SSH Connection
         run: |
           echo "Testing SSH connection..."
-          ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no root@10.25.84.4 "echo 'SSH connection successful'" || echo "SSH connection failed."
+          ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no -o BatchMode=yes root@10.25.84.4 "echo 'SSH connection successful'" || echo "SSH connection failed."
+
+      - name: Ensure Deploy Directory Exists
+        run: |
+          ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no root@10.25.84.4 "mkdir -p /var/www/destxpert.travel/"
 
       - name: Clean Deploy Directory
         run: |
