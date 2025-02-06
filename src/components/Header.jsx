@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import {
   FaBars,
   FaTimes,
@@ -18,22 +18,35 @@ const HeaderWithMenu = () => {
   const [isDesktop, setIsDesktop] = useState(
     window.matchMedia('(min-width: 768px)').matches
   );
-  const headerRef = useRef(null);
+  const menuRef = useRef(null);
 
-  // Блокировка прокрутки страницы на мобильных устройствах
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setMenuOpen(false);
+      }
+    };
+
+    if (menuOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [menuOpen]);
+
   useEffect(() => {
     if (menuOpen && !isDesktop) {
       document.body.classList.add('overflow-hidden');
     } else {
       document.body.classList.remove('overflow-hidden');
     }
-
     return () => {
       document.body.classList.remove('overflow-hidden');
     };
   }, [menuOpen, isDesktop]);
 
-  // Отслеживаем изменение ширины экрана
   useEffect(() => {
     const mediaQuery = window.matchMedia('(min-width: 768px)');
     const handleMediaChange = (e) => {
@@ -42,10 +55,16 @@ const HeaderWithMenu = () => {
         setMenuOpen(false);
       }
     };
-
     mediaQuery.addEventListener('change', handleMediaChange);
     return () => mediaQuery.removeEventListener('change', handleMediaChange);
   }, []);
+
+  // Закрытие меню при смене маршрута
+  const location = useLocation();
+
+  useEffect(() => {
+    setMenuOpen(false);
+  }, [location]);
 
   const handleMenuButtonClick = (e) => {
     e.stopPropagation();
@@ -55,7 +74,7 @@ const HeaderWithMenu = () => {
   return (
     <>
       {/* Хедер */}
-      <header ref={headerRef} className="relative bg-white z-50">
+      <header className="relative bg-white z-50">
         <div className="container mx-auto px-4 py-3 flex items-center justify-between">
           <Link
             to="/"
@@ -150,6 +169,7 @@ const HeaderWithMenu = () => {
       <AnimatePresence>
         {menuOpen && (
           <motion.div
+            ref={menuRef}
             key="menu"
             className={`${
               isDesktop
@@ -241,9 +261,11 @@ const HeaderWithMenu = () => {
               </div>
               <div className="mobile-only-space">
                 <h2 className="font-bold text-white">Новости</h2>
-                <h2 className="font-bold text-white mobile-only-space mb-2">
-                  Направления
-                </h2>
+                <Link to={'/destinations'}>
+                  <button className="font-bold text-white mobile-only-space mb-2">
+                    Страны и направления
+                  </button>
+                </Link>
                 <h2 className="font-bold text-white mb-2">Туристам</h2>
                 <Link
                   to="/where-to-buy"
