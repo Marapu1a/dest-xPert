@@ -35,7 +35,7 @@ jobs:
           gate.destxpert.travel:442 usepeerdns require-mschap-v2 refuse-eap noauth &
 
       - name: Wait for VPN
-        run: sleep 10 # даем время для установки VPN
+        run: sleep 30 # даем время для установки VPN
 
       - name: Debug VPN Connection
         run: |
