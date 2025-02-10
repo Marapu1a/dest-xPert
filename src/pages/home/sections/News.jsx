@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import newsPhoto from '@assets/sections/news/news-photo.webp';
+import newsPhoto from '@assets/sections/news/news1.jpg';
 
 function News() {
   return (
@@ -18,10 +18,30 @@ function News() {
         {/* Правый блок с тремя новостями */}
         <div className="flex-1 md:w-2/3 md:ml-4 flex flex-col justify-between">
           <div className="border-b pb-4 mb-4">
-            <span className="text-blue-300 text-sm">01.01.2025</span>
+            <span className="text-blue-300 text-sm">6 января 2025</span>
             <h3 className="text-lg font-bold text-blue-500 hover:text-blue-400">
-              <Link to="/news/1">Заголовок новости 1</Link>
+              <Link to="/news/1">Ранее бронирование Чехия</Link>
             </h3>
+            <div className="p-6">
+              <p className="text-gray-700 mb-4">
+                Уважаемые коллеги! Предлагаем Вам ✨ раннее бронирование на
+                лечебных курортах в Чехии — в Карловых Варах и Марианских
+                Лазнях. Это очень выгодные условия для ваших клиентов.
+              </p>
+              <p className="text-gray-700 mb-4">
+                ➡️ <strong>Условия акции:</strong> бронирование за 40-90 дней до
+                начала заезда. Дополнительная комиссия от 5 до 15%.
+              </p>
+              <p className="text-gray-700 mb-4">
+                📍 <strong>Карловы Вары:</strong> Olympic Palace 5*, Imperial
+                5*, Astoria 4*, комплекс отелей Bristol Royal 4*, Sanssoucci 4*,
+                Humboldt 4*, Smetana 4*, Karlsbad Grande Madonna 4*
+              </p>
+              <p className="text-gray-700">
+                📍 <strong>Марианские Лазне:</strong> сеть отелей ENSANA,
+                Olympia 4*, Grandhotel Nabokov 4*, Falkenstejner 5*
+              </p>
+            </div>
           </div>
           <div className="border-b pb-4 mb-4">
             <span className="text-blue-300 text-sm">02.01.2025</span>
