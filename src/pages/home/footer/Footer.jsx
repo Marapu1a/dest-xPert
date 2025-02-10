@@ -1,7 +1,25 @@
-import React from 'react';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { FaFacebook, FaInstagram, FaTelegram, FaYoutube } from 'react-icons/fa';
 
 const Footer = () => {
+  const [notification, setNotification] = useState('');
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+  const copyToClipboard = (text, event) => {
+    navigator.clipboard
+      .writeText(text)
+      .then(() => {
+        setMousePosition({ x: event.clientX, y: event.clientY });
+        setNotification(`${text} скопировано!`);
+        setTimeout(() => setNotification(''), 3000);
+      })
+      .catch(() => {
+        setNotification('Не удалось скопировать');
+        setTimeout(() => setNotification(''), 3000);
+      });
+  };
+
   return (
     <footer className="bg-blue-100 text-blue-800">
       {/* First Block */}
@@ -50,26 +68,70 @@ const Footer = () => {
           {/* Column 2 */}
           <div>
             <ul className="space-y-4">
+              <li
+                onClick={(e) => copyToClipboard('+998 90 9545470', e)}
+                className="cursor-pointer"
+              >
+                +998 90 9545470
+                <p className="text-sm text-blue-500">Офис Ташкент</p>
+              </li>
+              <li
+                onClick={(e) => copyToClipboard('+998 900268885', e)}
+                className="cursor-pointer"
+              >
+                +998 900268885
+                <p className="text-sm text-blue-500">Отдел продаж</p>
+              </li>
+
+              {/* E-mail */}
+              <li
+                onClick={(e) => copyToClipboard('tas@destxpert.travel', e)}
+                className="cursor-pointer"
+              >
+                tas@destxpert.travel
+                <p className="text-sm text-blue-500">E-mail</p>
+              </li>
+
+              {/* Telegram ссылки */}
               <li>
-                +7 (700) 377 15 15
-                <p className="text-sm text-blue-500">Служба поддержки</p>
+                <a
+                  href="https://t.me/destxpertb2b"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className=" hover:underline"
+                >
+                  @destxpertb2b
+                </a>
+                <p className="text-sm text-blue-500">
+                  Telegram: DestXpert Travel Агентствам Узбекистана
+                </p>
               </li>
               <li>
-                +7 (776) 877 15 15
-                <p className="text-sm text-blue-500">Экстренный телефон</p>
+                <a
+                  href="https://t.me/destxpert_travel"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className=" hover:underline"
+                >
+                  @destxpert_travel
+                </a>
+                <p className="text-sm text-blue-500">
+                  Telegram: DestXpert Travel
+                </p>
               </li>
-              <li>
-                +7 (700) 377 15 15
-                <p className="text-sm text-blue-500">WhatsApp</p>
-              </li>
-              <li>
-                sales@selfietravel.kz
-                <p className="text-sm text-blue-500">Наша почта</p>
-              </li>
-              <li>
-                @selfietravelkz_bot
-                <p className="text-sm text-blue-500">Telegram</p>
-              </li>
+              {/* Уведомление */}
+              {notification && (
+                <div
+                  className="fixed bg-black text-white text-sm py-2 px-4 rounded-lg shadow-lg"
+                  style={{
+                    top: mousePosition.y + 15 + 'px',
+                    left: mousePosition.x + 15 + 'px',
+                    zIndex: 1000,
+                  }}
+                >
+                  {notification}
+                </div>
+              )}
             </ul>
           </div>
 
@@ -123,7 +185,9 @@ const Footer = () => {
           <div>
             <h4 className="font-bold mb-4">Информация</h4>
             <ul className="space-y-2">
-              <li>Мед. страховка</li>
+              <Link to={'/insurance'}>
+                Страхование <br /> путешествия <br /> за рубеж
+              </Link>
               <li>Коллаборации</li>
             </ul>
           </div>
@@ -133,10 +197,12 @@ const Footer = () => {
       {/* Second Block */}
       <div className="text-center text-sm text-blue-500 py-4 border-b border-blue-300">
         <p>
-          © 2016 — 2024 Международный туроператор ТОО SELFIE TRAVEL (СЕЛФИ
-          ТРЕВЕЛ) имеющий лицензию ТО - 1314 от 03.12.2016 БИН/БСН: 140240028966
-          находится по адресу г. Шымкент, Аль-Фарабийский р-он, пр-т Кунаева 39
-          кв.1 ЖК Казахстан.
+          © 2025 Международный туроператор DestXpert Travel Masʼuliyati
+          cheklangan jamiyat (DestXpert Travel), зарегистрированное на
+          территории Республики Узбекистан, индикационный номер
+          налогоплательщика 311617009, расположенное по адресу Республика
+          Узбекистан, Ташкент, Юнусабадский район, Малая кольцевая дорога, 18а,
+          лицензия на туроператорскую деятельность № L-41802189 от 08.01.2025г.
         </p>
       </div>
 
@@ -144,12 +210,13 @@ const Footer = () => {
       <div className="bg-blue-900 text-blue-100 text-sm py-4">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <p>
-            Продолжая использовать наш сайт, вы подтверждаете свое согласие на
-            обработку персональных данных и принятие политики
-            конфиденциальности. Для повышения удобства работы с сайтом, ТОО
-            «Selfie Travel (Селфи Тревел)» использует файлы cookie. Если вы не
-            хотите, чтобы персональные данные обрабатывались, отключите cookie в
-            настройках браузера.
+            Для улучшения работы нашего сайта и предоставления
+            персонализированного пользовательского опыта, DestXpert Travel MChJ
+            использует файлы cookie. Вы можете управлять настройками их
+            использования в своем браузере. Продолжая пользоваться сайтом без
+            изменения настроек, вы соглашаетесь на обработку данных и принимаете
+            политику конфиденциальности в соответствии с законодательством
+            Республики Узбекистан.
           </p>
         </div>
       </div>

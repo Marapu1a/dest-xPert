@@ -7,9 +7,8 @@ import Home from '@pages/home/Home';
 import NewsPage from '@pages/news/NewsPage';
 import About from '@/pages/about/About';
 import Destinations from '@pages/destinations/Destinations';
-import Spa from '@pages/destinations/about-destinations/Spa';
-import Excursions from '@pages/destinations/about-destinations/Excursions';
-import Beach from '@pages/destinations/about-destinations/Beach';
+import Contacts from '@pages/contacts/Contacts';
+import InsuranceInfo from '@pages/insurance/Insurance';
 
 export function App() {
   return (
@@ -21,9 +20,8 @@ export function App() {
         <Route path="/news" element={<NewsPage />} />
         <Route path="/about" element={<About />} />
         <Route path="/destinations" element={<Destinations />} />
-        <Route path="/spa-wellness" element={<Spa />} />
-        <Route path="/excursions" element={<Excursions />} />
-        <Route path="/beach-vacation" element={<Beach />} />
+        <Route path="/contacts" element={<Contacts />} />
+        <Route path="/insurance" element={<InsuranceInfo />} />
       </Routes>
       <Footer />
     </BrowserRouter>

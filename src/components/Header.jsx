@@ -71,6 +71,23 @@ const HeaderWithMenu = () => {
     setMenuOpen((prev) => !prev);
   };
 
+  const [notification, setNotification] = useState('');
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+  const copyToClipboard = (text, event) => {
+    navigator.clipboard
+      .writeText(text)
+      .then(() => {
+        setMousePosition({ x: event.clientX, y: event.clientY });
+        setNotification(`${text} скопировано!`);
+        setTimeout(() => setNotification(''), 3000);
+      })
+      .catch(() => {
+        setNotification('Не удалось скопировать');
+        setTimeout(() => setNotification(''), 3000);
+      });
+  };
+
   return (
     <>
       {/* Хедер */}
@@ -189,7 +206,9 @@ const HeaderWithMenu = () => {
               }
             >
               <div className="flex flex-col">
-                <h2 className="font-bold text-white mb-2">О нас</h2>
+                <Link to={'/about'} className="font-bold text-white mb-2">
+                  О нас
+                </Link>
                 <Link
                   to="/team"
                   className="block text-white hover:text-[#f0e68c]"
@@ -282,26 +301,71 @@ const HeaderWithMenu = () => {
               </div>
               <div>
                 <ul className="space-y-4">
+                  {/* Телефоны */}
+                  <li
+                    onClick={(e) => copyToClipboard('+998 90 9545470', e)}
+                    className="cursor-pointer"
+                  >
+                    +998 90 9545470
+                    <p className="text-sm text-[#f0e68c]">Офис Ташкент</p>
+                  </li>
+                  <li
+                    onClick={(e) => copyToClipboard('+998 900268885', e)}
+                    className="cursor-pointer"
+                  >
+                    +998 900268885
+                    <p className="text-sm text-[#f0e68c]">Отдел продаж</p>
+                  </li>
+
+                  {/* E-mail */}
+                  <li
+                    onClick={(e) => copyToClipboard('tas@destxpert.travel', e)}
+                    className="cursor-pointer"
+                  >
+                    tas@destxpert.travel
+                    <p className="text-sm text-[#f0e68c]">E-mail</p>
+                  </li>
+
+                  {/* Telegram ссылки */}
                   <li>
-                    +7 (700) 377 15 15
-                    <p className="text-sm text-[#f0e68c]">Служба поддержки</p>
+                    <a
+                      href="https://t.me/destxpertb2b"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-blue-600 hover:underline"
+                    >
+                      @destxpertb2b
+                    </a>
+                    <p className="text-sm text-[#f0e68c]">
+                      Telegram: DestXpert Travel Агентствам Узбекистана
+                    </p>
                   </li>
                   <li>
-                    +7 (776) 877 15 15
-                    <p className="text-sm text-[#f0e68c]">Экстренный телефон</p>
+                    <a
+                      href="https://t.me/destxpert_travel"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-blue-600 hover:underline"
+                    >
+                      @destxpert_travel
+                    </a>
+                    <p className="text-sm text-[#f0e68c]">
+                      Telegram: DestXpert Travel
+                    </p>
                   </li>
-                  <li>
-                    +7 (700) 377 15 15
-                    <p className="text-sm text-[#f0e68c]">WhatsApp</p>
-                  </li>
-                  <li>
-                    sales@selfietravel.kz
-                    <p className="text-sm text-[#f0e68c]">Наша почта</p>
-                  </li>
-                  <li>
-                    @selfietravelkz_bot
-                    <p className="text-sm text-[#f0e68c]">Telegram</p>
-                  </li>
+                  {/* Уведомление */}
+                  {notification && (
+                    <div
+                      className="fixed bg-black text-white text-sm py-2 px-4 rounded-lg shadow-lg"
+                      style={{
+                        top: mousePosition.y + 15 + 'px',
+                        left: mousePosition.x + 15 + 'px',
+                        zIndex: 1000,
+                      }}
+                    >
+                      {notification}
+                    </div>
+                  )}
                 </ul>
               </div>
             </div>

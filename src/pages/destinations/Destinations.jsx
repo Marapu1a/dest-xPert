@@ -1,8 +1,25 @@
-import { Link } from 'react-router-dom';
+import { useState } from 'react';
 
 import beach from '@assets/sections/destination/beach.webp';
 
+import Beach from './about-destinations/Beach';
+import Excursions from './about-destinations/Excursions';
+import Spa from './about-destinations/Spa';
+
 const Destinations = () => {
+  const [activeSection, setActiveSection] = useState('Spa');
+
+  const renderSection = () => {
+    switch (activeSection) {
+      case 'Beach':
+        return <Beach />;
+      case 'Excursions':
+        return <Excursions />;
+      default:
+        return <Spa />; // Компонент по умолчанию
+    }
+  };
+
   return (
     <section className="container mx-auto px-4 lg:px-6 py-12">
       {/* Заголовок */}
@@ -36,40 +53,39 @@ const Destinations = () => {
 
       {/* Подразделы */}
       <div className="flex flex-wrap gap-3 mt-6">
-        <Link
-          to={'/spa-wellness'}
-          onClick={() => {
-            sessionStorage.clear(); // Очищаем сохраненные скролл-позиции
-            window.scrollTo(0, 0); // Сбрасываем в начало страницы
-          }}
+        <button
+          className={`px-4 py-2 ${
+            activeSection === 'Spa'
+              ? 'bg-blue-600 text-white'
+              : 'bg-[#F5F7FA] text-[#252630]'
+          } text-sm font-medium rounded-full shadow-sm`}
+          onClick={() => setActiveSection('Spa')}
         >
-          <button className="px-4 py-2 bg-[#F5F7FA] text-[#252630] text-sm font-medium rounded-full shadow-sm">
-            Лечение & спа & велнес
-          </button>
-        </Link>
-        <Link
-          to={'/excursions'}
-          onClick={() => {
-            sessionStorage.clear(); // Очищаем сохраненные скролл-позиции
-            window.scrollTo(0, 0); // Сбрасываем в начало страницы
-          }}
+          Лечение & спа & велнес
+        </button>
+        <button
+          className={`px-4 py-2 ${
+            activeSection === 'Excursions'
+              ? 'bg-blue-600 text-white'
+              : 'bg-[#F5F7FA] text-[#252630]'
+          } text-sm font-medium rounded-full shadow-sm`}
+          onClick={() => setActiveSection('Excursions')}
         >
-          <button className="px-4 py-2 bg-[#F5F7FA] text-[#252630] text-sm font-medium rounded-full shadow-sm">
-            Экскурсионный отдых
-          </button>
-        </Link>
-        <Link
-          to={'/beach-vacation'}
-          onClick={() => {
-            sessionStorage.clear(); // Очищаем сохраненные скролл-позиции
-            window.scrollTo(0, 0); // Сбрасываем в начало страницы
-          }}
+          Экскурсионный отдых
+        </button>
+        <button
+          className={`px-4 py-2 ${
+            activeSection === 'Beach'
+              ? 'bg-blue-600 text-white'
+              : 'bg-[#F5F7FA] text-[#252630]'
+          } text-sm font-medium rounded-full shadow-sm`}
+          onClick={() => setActiveSection('Beach')}
         >
-          <button className="px-4 py-2 bg-[#F5F7FA] text-[#252630] text-sm font-medium rounded-full shadow-sm">
-            Пляжный отдых
-          </button>
-        </Link>
+          Пляжный отдых
+        </button>
       </div>
+
+      <div className="mt-8">{renderSection()}</div>
     </section>
   );
 };
