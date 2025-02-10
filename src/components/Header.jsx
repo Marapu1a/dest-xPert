@@ -127,15 +127,15 @@ const HeaderWithMenu = () => {
             >
               Туристам
             </Link>
-            <Link
-              to="/cabinet"
+            <a
+              href="https://sm.destxpert.travel/search_tour?samo_action=logon"
               className="relative flex items-center justify-center w-10 h-10 rounded-full bg-gray-200 hover:bg-gray-300 transition-colors"
             >
               <FaUserAlt
                 className="text-[#252630] hover:text-gray-800 transition-colors"
                 size={20}
               />
-            </Link>
+            </a>
           </div>
 
           <div className="md:flex mr-2 space-x-4 ml-auto">
