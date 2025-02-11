@@ -1,20 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import egypt from '@assets/sections/destination/egypt.webp';
-import tailand from '@assets/sections/destination/tailand.webp';
-import kamboja from '@assets/sections/destination/kamboja.webp';
-import vietnam from '@assets/sections/destination/vietnam.webp';
-import china from '@assets/sections/destination/china.webp';
-import maldives from '@assets/sections/destination/maldives.webp';
+import italy from '@assets/sections/destination/италия.webp';
+import carl_var from '@assets/sections/destination/карловы_вары.webp';
+import slovenia from '@assets/sections/destination/словения.webp';
+import france from '@assets/sections/destination/франция.webp';
+import cheviz from '@assets/sections/destination/хевиз.webp';
+import switz from '@assets/sections/destination/швейцария.webp';
 
 const destinations = [
-  { name: 'Египет', link: '/egypt', image: egypt },
-  { name: 'Таиланд', link: '/thailand', image: tailand },
-  { name: 'Вьетнам', link: '/vietnam', image: kamboja },
-  { name: 'Камбоджа', link: '/cambodia', image: vietnam },
-  { name: 'Китай', link: '/china', image: china },
-  { name: 'Мальдивы', link: '/maldives', image: maldives },
+  { name: 'Италия', link: '#', image: italy },
+  { name: 'Карловы Вары', link: '#', image: carl_var },
+  { name: 'Франция', link: '#', image: france },
+  { name: 'Словения', link: '#', image: slovenia },
+  { name: 'Хевиз', link: '#', image: cheviz },
+  { name: 'Швейцария', link: '#', image: switz },
 ];
 
 const SeasonalDestinations = () => {
