@@ -14,39 +14,56 @@ import image5 from '@assets/header/carousel/Training.webp';
 const slides = [
   {
     image: image1,
-    title: '',
-    subtitle: '',
+    title: `Экскурсионные туры`,
+    titleStyle:
+      'md:text-[#252630] text-white text-4xl md:text-6xl p-6 pb-8 md:bg-white rounded-[60px] rounded-bl-none shadow-lg',
+    subtitle: 'в Европу',
+    subtitleStyle:
+      'md:text-[#252630] text-white text-4xl md:text-6xl px-6 pb-8 pt-0 md:bg-white rounded-[60px] rounded-tl-none rounded-tr-none shadow-lg',
     buttonText: 'Бронировать',
     buttonStyle:
-      'absolute bottom-7 md:bottom-[90px] left-2 md:left-[54px] bg-orange-500 text-white text-[28px] md:text-[48px] md:pb-4 pb-2 font-bold py-1 px-10 rounded-full shadow-lg hover:bg-orange-600 transition',
+      'mt-6 bg-orange-500 text-white text-[28px] md:text-[48px] pb-2 pt-1 px-10 font-bold rounded-full shadow-lg hover:bg-orange-600 transition',
   },
   {
     image: image2,
-    title: '',
-    subtitle: '',
+    title: 'Роудшоу ЧЕШСКАЯ ОДИССЕЯ 2025',
+    titleStyle:
+      'md:text-[#252630] text-white text-3xl md:text-5xl font-bold md:bg-white p-4 rounded-[50px] rounded-bl-none shadow-lg',
+    subtitle: 'Представляем потенциал Чешских регионов',
+    subtitleStyle:
+      'md:text-[#252630] text-white text-xl md:text-2xl md:bg-white px-6 pb-6 pt-0 rounded-[50px] rounded-tl-none rounded-tr-none shadow-lg',
     buttonText: 'Регистрация',
     buttonStyle:
-      'absolute bottom-7 md:bottom-[90px] left-2 md:left-[48px] bg-orange-500 text-white text-[28px] md:text-[48px] md:pb-4 pb-2 font-bold py-1 px-10 rounded-full shadow-lg hover:bg-orange-600 transition',
+      'mt-6 bg-orange-500 text-white text-[28px] md:text-[48px] pb-2 pt-1 px-10 font-bold rounded-full shadow-lg hover:bg-orange-600 transition',
   },
   {
     image: image3,
-    title: '',
+    title: 'Популярные курорты Европы',
+    titleStyle:
+      'text-white text-5xl md:text-6xl font-bold text-center drop-shadow-[0_4px_4px_rgba(0,0,0,0.7)] w-full',
     subtitle: '',
+    subtitleStyle: '',
     buttonText: '',
     buttonStyle: 'hidden',
   },
   {
     image: image4,
-    title: '',
+    title: 'Telegram-канал',
+    titleStyle:
+      'text-white text-5xl md:text-6xl font-bold text-center drop-shadow-[0_4px_4px_rgba(0,0,0,0.5)]',
     subtitle: '',
+    subtitleStyle: '',
     buttonText: 'Перейти',
     buttonStyle:
-      'absolute bottom-7 md:bottom-[180px] left-2 md:left-[105px] bg-blue-500 text-white text-[38px] font-bold md:pb-5 py-3 px-14 rounded-full shadow-lg hover:bg-blue-600 transition',
+      'mt-6 bg-blue-500 text-white text-[28px] md:text-[38px] font-bold py-2 pb-4 px-10 rounded-full shadow-lg hover:bg-blue-600 transition',
   },
   {
     image: image5,
-    title: '',
+    title: 'Обучающие семинары\nи тренинги',
+    titleStyle:
+      'text-white text-5xl md:text-6xl font-bold text-center drop-shadow-[0_4px_4px_rgba(0,0,0,0.7)] w-full whitespace-pre-line',
     subtitle: '',
+    subtitleStyle: '',
     buttonText: '',
     buttonStyle: 'hidden',
   },
@@ -58,7 +75,6 @@ const Carousel = () => (
       modules={[Navigation, Pagination, Autoplay]}
       navigation
       pagination={{ clickable: true }}
-      // autoplay={{ delay: 3000, disableOnInteraction: false }}
       loop
     >
       {slides.map((slide, index) => (
@@ -66,17 +82,29 @@ const Carousel = () => (
           <img
             src={slide.image}
             alt={slide.title}
-            className="w-full h-[300px] sm:h-[400px] md:h-[500px] object-cover"
+            className="w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px] object-cover"
             loading="lazy"
           />
-          <div className="absolute inset-0 flex flex-col justify-center items-center text-white">
-            <h2 className="text-2xl md:text-4xl font-bold cursor-default">
+          <div className="absolute inset-0 flex flex-col justify-center items-start sm:items-center md:items-start pl-4 sm:pl-6">
+            <h2
+              className={`${slide.titleStyle} text-3xl sm:text-5xl md:text-6xl`}
+            >
               {slide.title}
             </h2>
-            <p className="text-lg md:text-xl mt-2 cursor-default">
-              {slide.subtitle}
-            </p>
-            <button className={slide.buttonStyle}>{slide.buttonText}</button>
+            {slide.subtitle && (
+              <p
+                className={`${slide.subtitleStyle} text-xl sm:text-2xl md:text-3xl`}
+              >
+                {slide.subtitle}
+              </p>
+            )}
+            {slide.buttonText && (
+              <button
+                className={`${slide.buttonStyle} text-lg sm:text-2xl md:text-3xl px-6 md:px-10`}
+              >
+                {slide.buttonText}
+              </button>
+            )}
           </div>
         </SwiperSlide>
       ))}
