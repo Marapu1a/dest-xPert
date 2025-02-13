@@ -8,7 +8,10 @@ const FirstNews = () => {
   return (
     <div className="container mx-auto">
       <div className="bg-white rounded p-6 mb-8">
-        <h1 className="text-3xl font-bold mb-6">Ранее бронирование Чехия</h1>
+        <h1 className="text-3xl font-bold mb-6">
+          Агентствам : не забывайте про раннее бронирование и успейте получить
+          дополнительную выгоду!
+        </h1>
 
         <span className="text-gray-400 text-sm mb-2">9 февраля 2025</span>
 

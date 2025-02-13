@@ -35,7 +35,10 @@ function News() {
           <div className="border-b pb-4 mb-4">
             <span className="text-blue-300 text-sm">02.01.2025</span>
             <h3 className="text-lg font-bold text-blue-500 hover:text-blue-400">
-              <Link to="/news/1">Раннее бронирование Чехия</Link>
+              <Link to="/news/1">
+                Агентствам : не забывайте про раннее бронирование и успейте
+                получить дополнительную выгоду!
+              </Link>
             </h3>
           </div>
           <div className="border-b pb-4 mb-4">
