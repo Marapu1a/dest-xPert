@@ -44,15 +44,17 @@ function News() {
           <div className="border-b pb-4 mb-4">
             <span className="text-blue-300 text-sm">14.02.2025</span>
             <h3 className="text-lg font-bold text-blue-500 hover:text-blue-400">
-              <Link to="/news/3">
+              <Link to="/news/2">
                 Специальное предложение от Spa Hotel Imperial 5*
               </Link>
             </h3>
           </div>
           <div>
-            <span className="text-blue-300 text-sm">04.01.2025</span>
+            <span className="text-blue-300 text-sm">15.02.2025</span>
             <h3 className="text-lg font-bold text-blue-500 hover:text-blue-400">
-              <Link to="/news/4">Заголовок новости 4</Link>
+              <Link to="/news/3">
+                🌿 Workshop 2025: Чехия ближе, чем кажется! 🌿
+              </Link>
             </h3>
           </div>
           <Link
