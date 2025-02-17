@@ -22,7 +22,11 @@ const HeaderWithMenu = () => {
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (menuRef.current && !menuRef.current.contains(event.target)) {
+      if (
+        menuRef.current &&
+        !menuRef.current.contains(event.target) &&
+        event.target.closest('.menu-button') === null // Проверяем, что клик НЕ по кнопке
+      ) {
         setMenuOpen(false);
       }
     };
@@ -151,7 +155,7 @@ const HeaderWithMenu = () => {
 
           <button
             onClick={handleMenuButtonClick}
-            className="hidden md:inline-flex items-center justify-center z-50 bg-gray-200 text-[#252630] px-4 py-2 ml-4 rounded w-28 hover:bg-gray-300 transition-colors"
+            className="menu-button hidden md:inline-flex items-center justify-center z-50 bg-gray-200 text-[#252630] px-4 py-2 ml-4 rounded w-28 hover:bg-gray-300 transition-colors"
           >
             {menuOpen ? (
               <>
