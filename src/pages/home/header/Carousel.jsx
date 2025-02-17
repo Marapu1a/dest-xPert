@@ -22,7 +22,7 @@ const slides = [
       'md:text-[#252630] text-white text-4xl md:text-6xl px-6 pb-8 pt-0 md:bg-white rounded-[60px] rounded-tl-none rounded-tr-none shadow-lg',
     buttonText: 'Бронировать',
     buttonStyle:
-      'mt-6 bg-orange-500 text-white text-[28px] md:text-[48px] pb-5 pt-3 px-10 font-bold rounded-full shadow-lg hover:bg-orange-600 transition',
+      'mt-6 bg-orange-500 text-white text-[28px] md:text-[48px] py-4 px-10 font-bold rounded-full shadow-lg hover:bg-orange-600 transition',
   },
   {
     image: image2,
@@ -34,7 +34,7 @@ const slides = [
       'md:text-[#252630] text-white text-xl md:text-2xl md:bg-white px-6 pb-6 pt-0 rounded-[50px] rounded-tl-none rounded-tr-none shadow-lg',
     buttonText: 'Регистрация',
     buttonStyle:
-      'mt-6 bg-orange-500 text-white text-[28px] md:text-[48px] pb-5 pt-3 px-10 font-bold rounded-full shadow-lg hover:bg-orange-600 transition',
+      'mt-6 bg-orange-500 text-white text-[28px] md:text-[48px] py-4 px-10 font-bold rounded-full shadow-lg hover:bg-orange-600 transition',
   },
   {
     image: image3,
@@ -55,7 +55,7 @@ const slides = [
     subtitleStyle: '',
     buttonText: 'Перейти',
     buttonStyle:
-      'mt-6 bg-blue-500 text-white text-[28px] md:text-[38px] font-bold py-2 pb-4 px-10 rounded-full shadow-lg hover:bg-blue-600 transition',
+      'mt-6 bg-blue-500 text-white text-[28px] md:text-[38px] font-bold py-3 px-10 rounded-full shadow-lg hover:bg-blue-600 transition',
   },
   {
     image: image5,

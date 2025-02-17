@@ -8,6 +8,7 @@ function News() {
       <h2 className="text-2xl font-bold mb-6">Новости</h2>
       <div className="flex flex-col md:flex-row">
         {/* Левый блок с фото и анонсом главной новости */}
+        {/* Левый блок с фото и анонсом главной новости */}
         <div className="flex-1 md:w-2/3 relative mb-4 md:mb-0 group overflow-hidden rounded-lg">
           <div className="w-full overflow-hidden">
             <img
@@ -16,15 +17,18 @@ function News() {
               className="w-full h-full object-cover transform transition-transform duration-300 group-hover:scale-110"
             />
           </div>
-          <div className="absolute inset-0 bg-black bg-opacity-0 transition-all duration-300 flex flex-col justify-end p-4">
-            <span className="text-[#252630] text-sm">6 января 2025</span>
-            <h3 className="text-[#252630] text-xl font-bold mb-2">
+          {/* Градиентный фон снизу */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent transition-all duration-300 flex flex-col justify-end p-4">
+            <span className="text-white text-sm sm:text-shadow-md">
+              6 января 2025
+            </span>
+            <h3 className="text-xl font-bold mb-2 text-white sm:text-shadow-md">
               <Link to="/news/main-news" className="hover:underline">
                 Открытие нового корпуса отеля St. Joseph Royal Regent Spa Hotel
                 в Карловых Вараx
               </Link>
             </h3>
-            <p className="text-[#252630] text-sm">
+            <p className="text-sm text-white sm:text-shadow-md">
               Успейте забронировать тур по выгодным ценам до конца января.
             </p>
           </div>
