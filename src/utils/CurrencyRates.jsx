@@ -34,8 +34,10 @@ const CurrencyRates = () => {
 
   // Отображаем курсы валют
   return (
-    <span className="text-[#252630] hover:text-gray-600 cursor-default">
-      USD: {rates.USD} UZS / EUR: {rates.EUR} UZS
+    <span className="text-[#252630] hover:text-gray-600 cursor-default text-sm md:text-base flex flex-col md:flex-row md:items-center gap-1 md:gap-2">
+      <span>USD: {rates.USD} UZS</span>
+      <span className="hidden md:inline">|</span>
+      <span>EUR: {rates.EUR} UZS</span>
     </span>
   );
 };

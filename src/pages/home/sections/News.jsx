@@ -16,47 +16,56 @@ function News() {
               className="w-full h-full object-cover transform transition-transform duration-300 group-hover:scale-110"
             />
           </div>
-          <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-all duration-300 flex flex-col justify-end p-4 opacity-0 group-hover:opacity-100">
-            <span className="text-white text-sm mb-2">6 января 2025</span>
-            <h3 className="text-white text-xl font-bold mb-2">
+          <div className="absolute inset-0 bg-black bg-opacity-0 transition-all duration-300 flex flex-col justify-end p-4">
+            <span className="text-[#252630] text-sm">6 января 2025</span>
+            <h3 className="text-[#252630] text-xl font-bold mb-2">
               <Link to="/news/main-news" className="hover:underline">
                 Открытие нового корпуса отеля St. Joseph Royal Regent Spa Hotel
                 в Карловых Вараx
               </Link>
             </h3>
-            <p className="text-gray-300 text-sm">
+            <p className="text-[#252630] text-sm">
               Успейте забронировать тур по выгодным ценам до конца января.
             </p>
           </div>
         </div>
 
-        {/* Правый блок с тремя заголовками новостей */}
+        {/* Правый блок с четырьмя заголовками новостей */}
         <div className="flex-1 md:w-1/3 md:ml-4 flex flex-col justify-between">
-          <div className="border-b pb-4 mb-4">
-            <span className="text-blue-300 text-sm">02.01.2025</span>
-            <h3 className="text-lg font-bold text-blue-500 hover:text-blue-400">
-              <Link to="/news/1">
-                Агентствам : не забывайте про раннее бронирование и успейте
-                получить дополнительную выгоду!
-              </Link>
-            </h3>
-          </div>
-          <div className="border-b pb-4 mb-4">
-            <span className="text-blue-300 text-sm">14.02.2025</span>
-            <h3 className="text-lg font-bold text-blue-500 hover:text-blue-400">
-              <Link to="/news/2">
-                Специальное предложение от Spa Hotel Imperial 5*
-              </Link>
-            </h3>
-          </div>
-          <div>
-            <span className="text-blue-300 text-sm">15.02.2025</span>
-            <h3 className="text-lg font-bold text-blue-500 hover:text-blue-400">
-              <Link to="/news/3">
-                🌿 Workshop 2025: Чехия ближе, чем кажется! 🌿
-              </Link>
-            </h3>
-          </div>
+          {[
+            {
+              date: '02.01.2025',
+              link: '/news/1',
+              title:
+                'Агентствам: не забывайте про раннее бронирование и успейте получить дополнительную выгоду!',
+            },
+            {
+              date: '14.02.2025',
+              link: '/news/2',
+              title: 'Специальное предложение от Spa Hotel Imperial 5*',
+            },
+            {
+              date: '15.02.2025',
+              link: '/news/3',
+              title: '🌿 Workshop 2025: Чехия ближе, чем кажется! 🌿',
+            },
+            {
+              date: '17.02.2025',
+              link: '/news/4',
+              title:
+                '🚀 Европейский туроператор DestXpert Travel запускает онлайн-продажи! 🔥',
+            },
+          ].map((news, index) => (
+            <div
+              key={index}
+              className={`border-b pb-4 mb-4 ${index === 3 ? 'border-none' : ''}`}
+            >
+              <span className="text-blue-300 text-sm">{news.date}</span>
+              <h3 className="text-lg font-bold text-blue-500 hover:text-blue-400">
+                <Link to={news.link}>{news.title}</Link>
+              </h3>
+            </div>
+          ))}
           <Link
             to="/news"
             className="mt-4 text-center bg-blue-400 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
