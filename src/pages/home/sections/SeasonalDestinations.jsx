@@ -1,20 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import italy from '@assets/sections/destination/италия.webp';
-import carl_var from '@assets/sections/destination/карловы_вары.webp';
-import slovenia from '@assets/sections/destination/словения.webp';
-import france from '@assets/sections/destination/франция.webp';
-import cheviz from '@assets/sections/destination/хевиз.webp';
-import switz from '@assets/sections/destination/швейцария.webp';
+import italy from '@assets/sections/destination/italy.webp';
+import austria from '@assets/sections/destination/austria.webp';
+import hungary from '@assets/sections/destination/hungary.webp';
+import czech from '@assets/sections/destination/czech.webp';
+import lithuania from '@assets/sections/destination/lithuania.webp';
+import slovakia from '@assets/sections/destination/slovakia.webp';
 
 const destinations = [
   { name: 'Италия', link: '#', image: italy },
-  { name: 'Карловы Вары', link: '#', image: carl_var },
-  { name: 'Франция', link: '#', image: france },
-  { name: 'Словения', link: '#', image: slovenia },
-  { name: 'Хевиз', link: '#', image: cheviz },
-  { name: 'Швейцария', link: '#', image: switz },
+  { name: 'Австрия', link: '#', image: austria },
+  { name: 'Чехия', link: '#', image: czech },
+  { name: 'Венгрия', link: '#', image: hungary },
+  { name: 'Литва', link: '#', image: lithuania },
+  { name: 'Словакия', link: '#', image: slovakia },
 ];
 
 const SeasonalDestinations = () => {
