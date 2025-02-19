@@ -28,10 +28,16 @@ const Footer = () => {
           {/* Column 1 */}
           <div>
             <div>
-              <h4 className="font-bold mb-4">О нас</h4>
+              <Link to={'/about'}>
+                <h4 className="font-bold mb-4">О нас</h4>
+              </Link>
               <ul className="space-y-2">
-                <li>Наша команда</li>
-                <li>Контакты</li>
+                <Link to={'/team'}>
+                  <li>Наша команда</li>
+                </Link>
+                <Link to={'/contacts'}>
+                  <li>Контакты</li>
+                </Link>
               </ul>
             </div>
             <div className="mt-12">
@@ -140,14 +146,22 @@ const Footer = () => {
             <div>
               <h4 className="font-bold mb-4">Агентствам</h4>
               <ul className="space-y-2">
-                <li>Личный кабинет</li>
+                <a
+                  href="https://sm.destxpert.travel/search_tour?samo_action=logon"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Личный кабинет
+                </a>
                 <li>Подписка</li>
                 <li>Способ оплаты</li>
                 <li>Бонусная программа</li>
               </ul>
             </div>
             <div className="mt-6">
-              <h4 className="font-bold mb-4">Новости</h4>
+              <Link to={'/news'}>
+                <h4 className="font-bold mb-4">Новости</h4>
+              </Link>
               <ul className="space-y-2">
                 <li>Специальные предложения</li>
                 <li>Важная информация</li>
@@ -169,14 +183,12 @@ const Footer = () => {
             <div className="mt-6 ">
               <h4 className="font-bold mb-4">Направления</h4>
               <ul className="grid md:grid-cols-2 gap-x-4 gap-y-2">
-                <li>Вьетнам</li>
-                <li>Мальдивы</li>
-                <li>Египет</li>
-                <li>Таиланд</li>
-                <li>Китай</li>
-                <li>Турция</li>
-                <li>Круизы</li>
-                <li>Камбоджа</li>
+                <li>Италия</li>
+                <li>Австрия</li>
+                <li>Чехия</li>
+                <li>Венгрия</li>
+                <li>Литва</li>
+                <li>Словакия</li>
               </ul>
             </div>
           </div>

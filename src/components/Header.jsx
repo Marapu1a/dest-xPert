@@ -132,6 +132,8 @@ const HeaderWithMenu = () => {
               Туристам
             </Link>
             <a
+              target="_blank"
+              rel="noopener noreferrer"
               href="https://sm.destxpert.travel/search_tour?samo_action=logon"
               className="relative flex items-center justify-center w-10 h-10 rounded-full bg-gray-200 hover:bg-gray-300 transition-colors"
             >

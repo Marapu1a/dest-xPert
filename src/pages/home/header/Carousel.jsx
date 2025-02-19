@@ -78,8 +78,7 @@ const Carousel = () => (
       loop
       autoplay={{ delay: 5000, disableOnInteraction: false }}
       speed={800} // Плавное переключение
-      preloadImages={false} // Отключаем принудительную загрузку всех изображений
-      lazy={true} // Включаем ленивую загрузку изображений
+      lazy={{ loadPrevNext: true }} // Включаем ленивую загрузку изображений
     >
       {slides.map((slide, index) => (
         <SwiperSlide key={index} className="relative">
