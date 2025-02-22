@@ -78,28 +78,28 @@ jobs:
       - name: Test VPN Connection
         run: |
           echo "Pinging the server through VPN..."
-          ping -c 4 10.25.84.4 || echo "Ping failed. Check VPN connection or server availability."
+          ping -c 4 10.25.82.2 || echo "Ping failed. Check VPN connection or server availability."
 
       - name: Check SSH Connection
         run: |
           echo "Testing SSH connection..."
-          ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no -o BatchMode=yes root@10.25.84.4 "echo 'SSH connection successful'" || echo "SSH connection failed."
+          ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no -o BatchMode=yes root@10.25.82.2 "echo 'SSH connection successful'" || echo "SSH connection failed."
 
       - name: Ensure Deploy Directory Exists
         run: |
-          ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no root@10.25.84.4 "mkdir -p /var/www/destxpert.travel/"
+          ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no root@10.25.82.2 "mkdir -p /var/www/destxpert.travel/"
 
       - name: Clean Deploy Directory
         run: |
           echo "Cleaning up remote directory..."
-          ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no root@10.25.84.4 "rm -rf /var/www/destxpert.travel/*" || echo "Failed to clean deploy directory."
+          ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no root@10.25.82.2 "rm -rf /var/www/destxpert.travel/*" || echo "Failed to clean deploy directory."
 
       - name: Deploy to Server
         run: |
           echo "Deploying dist/ to server..."
-          scp -i ~/.ssh/id_rsa -r dist/* root@10.25.84.4:/var/www/destxpert.travel/ || echo "SCP failed. Check the logs above."
+          scp -i ~/.ssh/id_rsa -r dist/* root@10.25.82.2:/var/www/destxpert.travel/ || echo "SCP failed. Check the logs above."
 
       - name: Fix Ownership on Server
         run: |
           echo "Setting correct ownership for deployed files..."
-          ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no root@10.25.84.4 "chown -R www-data:www-data /var/www/destxpert.travel/" || echo "Failed to set ownership."
+          ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no root@10.25.82.2 "chown -R www-data:www-data /var/www/destxpert.travel/" || echo "Failed to set ownership."
