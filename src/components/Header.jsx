@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import {
   FaBars,
@@ -11,57 +11,59 @@ import {
 } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
 import logo from '@assets/header/logo/logo.png';
+
 import CurrencyRates from '@/utils/CurrencyRates';
+import useMediaQuery from '@/utils/useMediaQuery';
+import Notification from '@components/Notification';
 
 const HeaderWithMenu = () => {
+  const isDesktop = useMediaQuery('(min-width: 768px)');
   const [menuOpen, setMenuOpen] = useState(false);
-  const [isDesktop, setIsDesktop] = useState(
-    window.matchMedia('(min-width: 768px)').matches
-  );
+  const notificationRef = useRef('');
+  const [notification, setNotification] = useState('');
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
   const menuRef = useRef(null);
+  const timerRef = useRef(null);
 
   useEffect(() => {
-    const handleClickOutside = (event) => {
+    if (isDesktop) setMenuOpen(false); // Авто-закрытие меню при ресайзе на десктоп
+  }, [isDesktop]);
+
+  const handleClickOutside = useCallback(
+    (event) => {
       if (
+        menuOpen &&
         menuRef.current &&
         !menuRef.current.contains(event.target) &&
-        event.target.closest('.menu-button') === null // Проверяем, что клик НЕ по кнопке
+        event.target.closest('.menu-button') === null
       ) {
         setMenuOpen(false);
       }
-    };
+    },
+    [menuOpen]
+  );
 
+  useEffect(() => {
     if (menuOpen) {
       document.addEventListener('mousedown', handleClickOutside);
-    }
-
-    return () => {
+    } else {
       document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, [menuOpen]);
+    }
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [menuOpen, handleClickOutside]);
 
   useEffect(() => {
     if (menuOpen && !isDesktop) {
       document.body.classList.add('overflow-hidden');
-    } else {
-      document.body.classList.remove('overflow-hidden');
     }
-    return () => {
-      document.body.classList.remove('overflow-hidden');
-    };
-  }, [menuOpen, isDesktop]);
 
-  useEffect(() => {
-    const mediaQuery = window.matchMedia('(min-width: 768px)');
-    const handleMediaChange = (e) => {
-      setIsDesktop(e.matches);
-      if (e.matches) {
-        setMenuOpen(false);
+    return () => {
+      if (menuOpen && !isDesktop) {
+        document.body.classList.remove('overflow-hidden');
       }
     };
-    mediaQuery.addEventListener('change', handleMediaChange);
-    return () => mediaQuery.removeEventListener('change', handleMediaChange);
-  }, []);
+  }, [menuOpen, isDesktop]);
 
   // Закрытие меню при смене маршрута
   const location = useLocation();
@@ -70,27 +72,32 @@ const HeaderWithMenu = () => {
     setMenuOpen(false);
   }, [location]);
 
-  const handleMenuButtonClick = (e) => {
+  const handleMenuButtonClick = useCallback((e) => {
     e.stopPropagation();
     setMenuOpen((prev) => !prev);
-  };
+  }, []);
 
-  const [notification, setNotification] = useState('');
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const copyToClipboard = useCallback((text, event) => {
+    if (timerRef.current) clearTimeout(timerRef.current);
 
-  const copyToClipboard = (text, event) => {
     navigator.clipboard
       .writeText(text)
       .then(() => {
         setMousePosition({ x: event.clientX, y: event.clientY });
-        setNotification(`${text} скопировано!`);
-        setTimeout(() => setNotification(''), 3000);
+        notificationRef.current = `${text} скопировано!`;
+        setNotification(notificationRef.current);
+        timerRef.current = setTimeout(() => setNotification(''), 3000);
       })
       .catch(() => {
-        setNotification('Не удалось скопировать');
-        setTimeout(() => setNotification(''), 3000);
+        notificationRef.current = 'Не удалось скопировать';
+        setNotification(notificationRef.current);
+        timerRef.current = setTimeout(() => setNotification(''), 3000);
       });
-  };
+  }, []);
+
+  useEffect(() => {
+    return () => clearTimeout(timerRef.current); // Очищаем таймер при размонтировании
+  }, []);
 
   return (
     <>
@@ -360,18 +367,10 @@ const HeaderWithMenu = () => {
                     </p>
                   </li>
                   {/* Уведомление */}
-                  {notification && (
-                    <div
-                      className="fixed bg-black text-white text-sm py-2 px-4 rounded-lg shadow-lg"
-                      style={{
-                        top: mousePosition.y + 15 + 'px',
-                        left: mousePosition.x + 15 + 'px',
-                        zIndex: 1000,
-                      }}
-                    >
-                      {notification}
-                    </div>
-                  )}
+                  <Notification
+                    message={notification}
+                    position={mousePosition}
+                  />
                 </ul>
               </div>
             </div>

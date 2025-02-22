@@ -1,24 +1,36 @@
-import { useState } from 'react';
+import { useState, useRef, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { FaFacebook, FaInstagram, FaTelegram, FaYoutube } from 'react-icons/fa';
+import Notification from '@components/Notification';
 
 const Footer = () => {
   const [notification, setNotification] = useState('');
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
-  const copyToClipboard = (text, event) => {
+  const notificationRef = useRef('');
+  const timerRef = useRef(null);
+
+  const copyToClipboard = useCallback((text, event) => {
+    if (timerRef.current) clearTimeout(timerRef.current);
+
     navigator.clipboard
       .writeText(text)
       .then(() => {
         setMousePosition({ x: event.clientX, y: event.clientY });
-        setNotification(`${text} скопировано!`);
-        setTimeout(() => setNotification(''), 3000);
+        notificationRef.current = `${text} скопировано!`;
+        setNotification(notificationRef.current);
+        timerRef.current = setTimeout(() => setNotification(''), 3000);
       })
       .catch(() => {
-        setNotification('Не удалось скопировать');
-        setTimeout(() => setNotification(''), 3000);
+        notificationRef.current = 'Не удалось скопировать';
+        setNotification(notificationRef.current);
+        timerRef.current = setTimeout(() => setNotification(''), 3000);
       });
-  };
+  }, []);
+
+  useEffect(() => {
+    return () => clearTimeout(timerRef.current); // Чистим таймер при размонтировании
+  }, []);
 
   return (
     <footer className="bg-blue-100 text-blue-800">
@@ -127,16 +139,7 @@ const Footer = () => {
               </li>
               {/* Уведомление */}
               {notification && (
-                <div
-                  className="fixed bg-black text-white text-sm py-2 px-4 rounded-lg shadow-lg"
-                  style={{
-                    top: mousePosition.y + 15 + 'px',
-                    left: mousePosition.x + 15 + 'px',
-                    zIndex: 1000,
-                  }}
-                >
-                  {notification}
-                </div>
+                <Notification message={notification} position={mousePosition} />
               )}
             </ul>
           </div>
