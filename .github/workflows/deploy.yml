@@ -57,7 +57,7 @@ jobs:
         run: |
           if ifconfig | grep -q ppp0; then
             echo "Adding VPN route..."
-            sudo ip route add 10.25.84.0/24 dev ppp0 || echo "Failed to add VPN route"
+            sudo ip route add 10.25.82.0/24 dev ppp0 || echo "Failed to add VPN route"
           else
             echo "VPN interface ppp0 not found! Skipping route setup."
             exit 1
