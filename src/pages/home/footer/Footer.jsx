@@ -1,4 +1,4 @@
-import { useState, useRef, useCallback } from 'react';
+import { useState, useRef, useCallback, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { FaFacebook, FaInstagram, FaTelegram, FaYoutube } from 'react-icons/fa';
 import Notification from '@components/Notification';
