@@ -10,7 +10,7 @@ import {
   FaUserAlt,
 } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
-import logo from '@assets/header/logo/logo.png';
+import logo from '@assets/header/logo/logo.webp';
 
 import CurrencyRates from '@/utils/CurrencyRates';
 import useMediaQuery from '@/utils/useMediaQuery';

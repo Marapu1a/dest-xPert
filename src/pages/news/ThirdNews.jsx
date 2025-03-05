@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import newsPhoto1 from '@assets/sections/news/third_news/news4-1.jpg';
+import newsPhoto1 from '@assets/sections/news/third_news/news4-1.webp';
 
 const ThirdNews = () => {
   const photos = [newsPhoto1];

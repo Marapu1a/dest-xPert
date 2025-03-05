@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import newsPhoto from '@assets/sections/news/main_news/news1-3.jpg';
+import newsPhoto from '@assets/sections/news/main_news/news1-3.webp';
 
 function News() {
   return (

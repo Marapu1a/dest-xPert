@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import newsPhoto1 from '@assets/sections/news/main_news/news1-1.jpg';
-import newsPhoto2 from '@assets/sections/news/main_news/news1-3.jpg';
-import newsPhoto3 from '@assets/sections/news/main_news/news1-2.jpg';
-import newsPhoto4 from '@assets/sections/news/main_news/news1-4.jpg';
-import newsPhoto5 from '@assets/sections/news/main_news/news1-5.jpg';
+import newsPhoto1 from '@assets/sections/news/main_news/news1-1.webp';
+import newsPhoto2 from '@assets/sections/news/main_news/news1-3.webp';
+import newsPhoto3 from '@assets/sections/news/main_news/news1-2.webp';
+import newsPhoto4 from '@assets/sections/news/main_news/news1-4.webp';
+import newsPhoto5 from '@assets/sections/news/main_news/news1-5.webp';
 
 const MainNews = () => {
   const photos = [newsPhoto1, newsPhoto2, newsPhoto3, newsPhoto4, newsPhoto5];
