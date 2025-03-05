@@ -15,5 +15,13 @@ export default defineConfig({
   build: {
     outDir: 'dist', // Собирается локально на runner
     emptyOutDir: true,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ['react', 'react-dom'],
+          swiper: ['swiper']
+        }
+      }
+    }
   },
 });
