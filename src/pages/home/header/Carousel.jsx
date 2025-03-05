@@ -72,6 +72,7 @@ const slides = [
 const Carousel = () => (
   <div className="w-full overflow-hidden">
     <Swiper
+      className="swiper-container"
       modules={[Navigation, Pagination, Autoplay]}
       navigation
       pagination={{ clickable: true }}
@@ -81,13 +82,13 @@ const Carousel = () => (
       lazy={{ loadPrevNext: true }} // Включаем ленивую загрузку изображений
     >
       {slides.map((slide, index) => (
-        <SwiperSlide key={index} className="relative">
+        <SwiperSlide key={index} className="relative swiper-lazy">
           {/* Оптимизированное изображение */}
           <img
             src={slide.image}
             alt={slide.title}
             className="w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px] object-cover will-change-transform"
-            loading="lazy"
+            loading={index === 0 ? 'eager' : 'lazy'}
           />
           {/* Градиентный фон для контраста */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent transition-all duration-300 flex flex-col justify-center items-start sm:items-center md:items-start pl-4 sm:pl-6">
